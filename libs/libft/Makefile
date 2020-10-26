@@ -6,7 +6,7 @@
 #    By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 00:16:18 by seyu              #+#    #+#              #
-#    Updated: 2020/10/27 00:20:42 by seyu             ###   ########.fr        #
+#    Updated: 2020/10/27 00:29:53 by seyu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,14 +25,14 @@ RM		=	rm -f
 			@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 $(NAME):	$(OBJS)
-			ar rc $(NAME) $(OBJS)
+			@ar rc $(NAME) $(OBJS)
 
 all:		$(NAME)
 
 clean:
-			$(RM) $(OBJS)
+			@$(RM) $(OBJS)
 
 fclean:		clean
-			$(RM) $(NAME)
+			@$(RM) $(NAME)
 
 re:			fclean all
