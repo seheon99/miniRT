@@ -6,7 +6,7 @@
 #    By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/10 23:07:12 by seheon            #+#    #+#              #
-#    Updated: 2020/10/27 00:14:40 by seyu             ###   ########.fr        #
+#    Updated: 2020/10/27 00:30:16 by seyu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ ECHO	=	echo
 			@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 			@$(ECHO) "Compiled $(YELLOW)" $< " $(GREEN)Successfully$(NOCOLOR)"
 
-$(NAME):	$(NAME_MLX) $(OBJS)
+$(NAME):	$(NAME_MLX) $(DIR_FT)/$(NAME_FT) $(OBJS)
 			$(CC) $(CFLAGS) $(OBJS) $(CFRMWRK) -lmlx -o $(NAME)
 
 $(NAME_MLX):
@@ -80,12 +80,14 @@ all:		$(NAME)
 clean:
 			@make -C $(DIR_MLX) clean
 			@$(RM) ./$(NAME_MLX)
-			@$(ECHO) "Cast out $(RED)$(NAME_MLX)$(NOCOLOR)"
+			@$(ECHO) "Cast out $(RED)MLX$(NOCOLOR)"
+			@make -C $(DIR_FT) clean
+			@$(ECHO) "Cast out $(RED)FT$(NOCOLOR)"
 			@$(RM) $(OBJS)
-			@$(ECHO) "Cast out $(RED)the Object files$(NOCOLOR)"
+			@$(ECHO) "Cast out $(RED)$(NAME)$(NOCOLOR)"
 
 fclean:		clean
 			@$(RM) $(NAME)
-			@$(ECHO) "Cast out $(RED)$(NAME)$(NOCOLOR)"
+			@$(ECHO) "Remove $(RED)$(NAME)$(NOCOLOR)"
 
 re:			fclean $(NAME)
