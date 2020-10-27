@@ -6,7 +6,7 @@
 #    By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/10 23:07:12 by seheon            #+#    #+#              #
-#    Updated: 2020/10/27 22:12:34 by seyu             ###   ########.fr        #
+#    Updated: 2020/10/28 01:54:27 by seyu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,11 @@ DIR_SRC	=	./srcs/
 DIR_MLX	=	./libs/minilibx/
 DIR_FT	=	./libs/libft/
 
-SRCS	=	$(wildcard $(DIR_SRC)/**/*.c)
+SRCS	=	$(wildcard $(DIR_SRC)/*.c) \
+			$(wildcard $(DIR_SRC)/*/*.c) \
+			$(wildcard $(DIR_SRC)/*/*/*.c) \
+			$(wildcard $(DIR_SRC)/*/*/*/*.c) \
+			$(wildcard $(DIR_SRC)/*/*/*/*/*.c)
 OBJS	=	$(SRCS:.c=.o)
 
 NAME	=	miniRT
@@ -48,8 +52,8 @@ NAME_MLX=	libmlx.dylib
 NAME_FT	=	libft.a
 
 CC		=	clang
-CFLAGS	=	-Wall -Wextra -Werror -I$(DIR_INC) -L$(DIR_FT) -lft
-CFRMWRK	=	-framework OpenGL -framework AppKit
+CFLAGS	=	-I$(DIR_INC)# -Wall -Wextra -Werror
+CLIBFMW	=	-L$(DIR_FT) -lft -framework OpenGL -framework AppKit
 
 CP		=	cp
 RM		=	rm -f
@@ -61,7 +65,10 @@ ECHO	=	echo
 			@$(ECHO) "Compiled $(YELLOW)" $< " $(GREEN)Successfully$(NOCOLOR)"
 
 $(NAME):	$(NAME_MLX) $(DIR_FT)/$(NAME_FT) $(OBJS)
-			$(CC) $(CFLAGS) $(OBJS) $(CFRMWRK) -lmlx -o $(NAME)
+			@$(CC) $(CFLAGS) $(OBJS) $(CLIBFMW) -lmlx -o $(NAME)
+			@$(ECHO) "Maked $(LIGHTBLUE)$(NAME)$(NOCOLOR) $(GREEN)Successfully$(NOCOLOR)"
+			@$(ECHO) "You can render your $(LIGHTGREEN).rt files$(NOCOLOR) with $(LIGHTBLUE)$(NAME)$(NOCOLOR)"
+			@$(ECHO) " $(BLUE)>$(NOCOLOR) ./$(NAME) wolf.rt cat.rt ..."
 
 $(NAME_MLX):
 			@$(ECHO) "Summoning $(YELLOW)$(NAME_MLX)$(NOCOLOR) ..."
@@ -76,6 +83,8 @@ $(DIR_FT)/$(NAME_FT):
 
 
 all:		$(NAME)
+
+bonus:		$(NAME)
 
 clean:
 			@make -C $(DIR_MLX) clean

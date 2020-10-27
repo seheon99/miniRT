@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 22:56:20 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/28 00:34:35 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/28 01:09:36 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int			window_clear(t_window *win);
 
 t_image		*window_new_image(t_window *win, int width, int height);
 int			window_delete_image(t_window *win, t_image *img);
-int			window_put_image(t_window *win, t_image *img);
+int			window_put_image(t_window *win, t_image *img, int x, int y);
 
 /*
 **	-----------------------------------
