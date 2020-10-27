@@ -1,6 +1,7 @@
 *.DS_store
 *.swiftdoc
 *.swiftmodule
+miniRT
 
 # Prerequisites
 *.d
