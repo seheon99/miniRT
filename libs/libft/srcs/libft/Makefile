@@ -6,7 +6,7 @@
 #    By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/28 20:01:40 by seyu              #+#    #+#              #
-#    Updated: 2020/10/27 21:00:34 by seyu             ###   ########.fr        #
+#    Updated: 2020/10/28 02:25:42 by seyu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,10 @@ SRCS		=	ft_memset.c \
 				ft_ulltostr.c \
 				ft_print_memory.c \
 				ft_intlogn.c \
-				ft_intlog.c
+				ft_intlog.c \
+				ft_llabs.c \
+				ft_llmax.c \
+				ft_llmin.c
 OBJS		=	$(SRCS:.c=.o)
 NAME		=	libft.a
 CC			=	clang
