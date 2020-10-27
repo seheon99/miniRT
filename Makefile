@@ -6,7 +6,7 @@
 #    By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/10 23:07:12 by seheon            #+#    #+#              #
-#    Updated: 2020/10/27 00:30:16 by seyu             ###   ########.fr        #
+#    Updated: 2020/10/27 22:08:41 by seyu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,6 @@ DIR_SRC	=	./srcs/
 DIR_MLX	=	./libs/minilibx/
 DIR_FT	=	./libs/libft/
 
-SRC		=
 SRCS	=	$(addprefix $(DIR_SRC), $(SRC))
 OBJS	=	$(SRCS:.c=.o)
 
@@ -79,14 +78,20 @@ all:		$(NAME)
 
 clean:
 			@make -C $(DIR_MLX) clean
-			@$(RM) ./$(NAME_MLX)
 			@$(ECHO) "Cast out $(RED)MLX$(NOCOLOR)"
 			@make -C $(DIR_FT) clean
 			@$(ECHO) "Cast out $(RED)FT$(NOCOLOR)"
 			@$(RM) $(OBJS)
 			@$(ECHO) "Cast out $(RED)$(NAME)$(NOCOLOR)"
 
-fclean:		clean
+fclean:
+			@make -C $(DIR_MLX) clean
+			@$(RM) ./$(NAME_MLX)
+			@$(ECHO) "Cast out $(RED)MLX$(NOCOLOR)"
+			@make -C $(DIR_FT) fclean
+			@$(ECHO) "Cast out $(RED)FT$(NOCOLOR)"
+			@$(RM) $(OBJS)
+			@$(ECHO) "Cast out $(RED)$(NAME)$(NOCOLOR)"
 			@$(RM) $(NAME)
 			@$(ECHO) "Remove $(RED)$(NAME)$(NOCOLOR)"
 
