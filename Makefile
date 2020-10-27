@@ -6,13 +6,14 @@
 #    By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/10 23:07:12 by seheon            #+#    #+#              #
-#    Updated: 2020/10/27 22:08:41 by seyu             ###   ########.fr        #
+#    Updated: 2020/10/27 22:12:34 by seyu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ----------------------------------
 # Echo Colors
 # ----------------------------------
+
 NOCOLOR		= \033[0m
 RED			= \033[0;31m
 GREEN		= \033[0;32m
@@ -39,7 +40,7 @@ DIR_SRC	=	./srcs/
 DIR_MLX	=	./libs/minilibx/
 DIR_FT	=	./libs/libft/
 
-SRCS	=	$(addprefix $(DIR_SRC), $(SRC))
+SRCS	=	$(wildcard $(DIR_SRC)/**/*.c)
 OBJS	=	$(SRCS:.c=.o)
 
 NAME	=	miniRT
