@@ -6,7 +6,7 @@
 #    By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/10 23:07:12 by seheon            #+#    #+#              #
-#    Updated: 2020/10/28 02:32:57 by seyu             ###   ########.fr        #
+#    Updated: 2020/10/28 02:37:50 by seyu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ NAME_MLX=	libmlx.dylib
 NAME_FT	=	libft.a
 
 CC		=	clang
-CFLAGS	=	-I$(DIR_INC)# -Wall -Wextra -Werror
+CFLAGS	=	-I$(DIR_INC) -Wall -Wextra -Werror -g
 CLIBFMW	=	-L$(DIR_FT) -lft -framework OpenGL -framework AppKit
 
 CP		=	cp
