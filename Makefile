@@ -6,7 +6,7 @@
 #    By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/10 23:07:12 by seheon            #+#    #+#              #
-#    Updated: 2020/10/28 01:54:27 by seyu             ###   ########.fr        #
+#    Updated: 2020/10/28 02:32:57 by seyu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,5 +104,6 @@ fclean:
 			@$(ECHO) "Cast out $(RED)$(NAME)$(NOCOLOR)"
 			@$(RM) $(NAME)
 			@$(ECHO) "Remove $(RED)$(NAME)$(NOCOLOR)"
+			@$(RM) **/*\ *.o **/*\ *.swift* **/*\ *.dylib **/*\ *.a
 
 re:			fclean $(NAME)
