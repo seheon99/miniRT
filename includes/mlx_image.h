@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 22:58:10 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/28 01:10:27 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/29 00:19:22 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,15 @@
 struct	s_image
 {
 	void			*mlx_img;
+
 	char			*addr;
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
+
+	int				width;
+	int				height;
+
 	struct s_image	*next_img;
 };
 typedef	struct s_image	t_image;

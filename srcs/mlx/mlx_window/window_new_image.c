@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 23:24:22 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/28 02:48:30 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/29 00:30:05 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_image	*window_new_image(t_window *win, int width, int height)
 	if (!imgptr)
 	{
 		imgptr = (t_image *)malloc(sizeof(t_image));
-		*(win->imglst_head) = imgptr;
+		win->imglst_head = imgptr;
 	}
 	else
 	{
@@ -34,6 +34,8 @@ t_image	*window_new_image(t_window *win, int width, int height)
 										&(imgptr->bits_per_pixel),
 										&(imgptr->line_length),
 										&(imgptr->endian));
+	imgptr->width = width;
+	imgptr->height = height;
 	imgptr->next_img = NULL;
 	return (imgptr);
 }
