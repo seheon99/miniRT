@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:23:24 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/28 00:26:57 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/29 00:29:14 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 t_image	*window_find_prev_image(t_window *win, t_image *img)
 {
-	t_image	**imgptr;
+	t_image	*imgptr;
 
 	imgptr = win->imglst_head;
-	if (!imgptr || *imgptr == img)
+	if (!imgptr || imgptr == img)
 		return (NULL);
-	while ((*imgptr)->next_img != img)
-		(*imgptr) = (*imgptr)->next_img;
-	return (*imgptr);
+	while (imgptr->next_img != img)
+		imgptr = imgptr->next_img;
+	return (imgptr);
 }

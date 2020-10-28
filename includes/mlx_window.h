@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 22:56:20 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/28 01:09:36 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/29 00:23:20 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ struct	s_window
 {
 	void	*mlx;
 	void	*mlx_win;
-	t_image	**imglst_head;
+	t_image	*imglst_head;
 };
 typedef	struct s_window	t_window;
 
