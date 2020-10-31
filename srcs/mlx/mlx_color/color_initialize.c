@@ -6,11 +6,11 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 00:09:27 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/30 00:10:43 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/31 20:38:13 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_color.h"
+#include "mlx/mlx_color.h"
 
 t_color	color_create(double r, double g, double b)
 {

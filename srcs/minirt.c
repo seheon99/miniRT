@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 01:21:45 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/31 20:30:29 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/31 20:43:41 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 */
 
 #include "libs/mlx.h"
-#include "libft.h"
-#include "ft_printf.h"
-#include "vec3.h"
+#include "libs/libft.h"
+#include "libs/ft_printf.h"
+#include "libs/vec3.h"
 
 /*
 **	-----------------------------------
@@ -27,11 +27,11 @@
 **	-----------------------------------
 */
 
-#include "mlx_window.h"
-#include "mlx_image.h"
-#include "mlx_color.h"
+#include "mlx/mlx_color.h"
+#include "mlx/mlx_image.h"
+#include "mlx/mlx_window.h"
 
-#include "ray.h"
+#include "raytracing/ray.h"
 
 #include "error.h"
 

@@ -6,12 +6,12 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 02:27:41 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/29 02:32:30 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/31 20:41:06 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include "vec3.h"
+#include "libs/vec3.h"
 
 t_vec3	vec3_unit_vector(const t_vec3 v)
 {

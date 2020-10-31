@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 19:35:36 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/27 22:39:13 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/31 20:38:13 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define MLX_SYNC_WIN_FLUSH_CMD		2
 # define MLX_SYNC_WIN_CMD_COMPLETED	3
 
-# include "mlx_color.h"
+# include "mlx/mlx_color.h"
 
 /*
 **	mlx_init()

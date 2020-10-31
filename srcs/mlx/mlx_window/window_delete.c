@@ -6,12 +6,12 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 23:13:35 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/29 00:27:50 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/31 20:44:52 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "mlx_window.h"
+#include "mlx/mlx_window.h"
 
 int	window_delete(t_window **win)
 {

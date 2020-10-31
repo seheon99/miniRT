@@ -6,13 +6,13 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 23:52:42 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/29 00:25:43 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/31 20:45:04 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "mlx_window.h"
-#include "mlx_image.h"
+#include "mlx/mlx_image.h"
+#include "mlx/mlx_window.h"
 
 /*
 **	window_delete_image

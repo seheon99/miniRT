@@ -6,11 +6,11 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 01:57:58 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/29 02:16:13 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/31 20:41:06 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec3.h"
+#include "libs/vec3.h"
 
 t_vec3	vec3_mul2(const t_vec3 v, const double d)
 {

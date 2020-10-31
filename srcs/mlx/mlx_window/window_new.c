@@ -6,12 +6,12 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 23:06:08 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/29 00:30:45 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/31 20:46:09 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "mlx_window.h"
+#include "mlx/mlx_window.h"
 
 t_window	*window_new(int size_x, int size_y, char *title)
 {

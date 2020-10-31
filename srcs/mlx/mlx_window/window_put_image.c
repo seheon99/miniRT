@@ -6,12 +6,12 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:37:03 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/28 01:09:38 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/31 20:46:35 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_window.h"
-#include "mlx_image.h"
+#include "mlx/mlx_image.h"
+#include "mlx/mlx_window.h"
 
 /*
 **	window_put_image

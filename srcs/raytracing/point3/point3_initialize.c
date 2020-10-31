@@ -6,11 +6,11 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 14:37:02 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/31 14:39:39 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/31 20:42:48 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "point3.h"
+#include "raytracing/point3.h"
 
 t_point3	point3_create(double x, double y, double z)
 {

@@ -6,11 +6,11 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 23:09:54 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/27 23:12:27 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/31 20:44:12 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_window.h"
+#include "mlx/mlx_window.h"
 
 int	window_clear(t_window *win)
 {

@@ -6,12 +6,12 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:31:21 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/29 00:25:00 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/31 20:45:16 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_window.h"
-#include "mlx_image.h"
+#include "mlx/mlx_image.h"
+#include "mlx/mlx_window.h"
 
 int	window_delete_image_all(t_window *win)
 {

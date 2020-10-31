@@ -6,13 +6,13 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 23:24:22 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/29 00:30:05 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/31 20:46:25 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "mlx_window.h"
-#include "mlx_image.h"
+#include "mlx/mlx_image.h"
+#include "mlx/mlx_window.h"
 
 t_image	*window_new_image(t_window *win, int width, int height)
 {

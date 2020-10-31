@@ -6,11 +6,11 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 02:45:33 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/31 15:22:36 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/31 20:38:13 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_color.h"
+#include "mlx/mlx_color.h"
 
 int	color_get_t()
 {

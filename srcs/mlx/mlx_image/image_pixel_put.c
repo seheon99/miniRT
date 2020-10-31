@@ -6,12 +6,12 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 01:09:44 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/29 04:54:46 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/31 20:44:04 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_image.h"
-#include "mlx_color.h"
+#include "mlx/mlx_color.h"
+#include "mlx/mlx_image.h"
 
 int	image_pixel_put(t_image *img, int x, int y, t_color color)
 {

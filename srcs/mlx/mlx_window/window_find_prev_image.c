@@ -6,12 +6,12 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:23:24 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/29 00:29:14 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/31 20:46:02 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_window.h"
-#include "mlx_image.h"
+#include "mlx/mlx_image.h"
+#include "mlx/mlx_window.h"
 
 t_image	*window_find_prev_image(t_window *win, t_image *img)
 {

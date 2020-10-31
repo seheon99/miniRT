@@ -6,12 +6,12 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 04:37:54 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/29 04:39:52 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/31 20:42:33 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ray.h"
-#include "vec3.h"
+#include "raytracing/ray.h"
+#include "libs/vec3.h"
 
 t_ray		ray_create(t_point3 origin, t_vec3 direction)
 {

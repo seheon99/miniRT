@@ -6,7 +6,7 @@
 #    By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/10 23:07:12 by seheon            #+#    #+#              #
-#    Updated: 2020/10/31 20:33:50 by seyu             ###   ########.fr        #
+#    Updated: 2020/10/31 20:35:58 by seyu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -117,9 +117,28 @@ fclean:
 			@$(ECHO) "Remove $(RED)$(NAME)$(NOCOLOR)"
 			@$(RM)	*\ *.o \
 					*/*\ *.o \
+					*/*/*\ *.o \
+					*/*/*/*\ *.o \
+					*/*/*/*/*\ *.o \
+					*\ *.a \
 					*/*\ *.a \
+					*/*/*\ *.a \
+					*/*/*/*\ *.a \
+					*/*/*/*/*\ *.a \
+					*\ *.dylib \
 					*/*\ *.dylib \
+					*/*/*\ *.dylib \
+					*/*/*/*\ *.dylib \
+					*/*/*/*/*\ *.dylib \
+					*\ *.swiftmodule \
 					*/*\ *.swiftmodule \
-					*/*\ *.swiftdoc
+					*/*/*\ *.swiftmodule \
+					*/*/*/*\ *.swiftmodule \
+					*/*/*/*/*\ *.swiftmodule \
+					*\ *.swiftdoc \
+					*/*\ *.swiftdoc \
+					*/*/*\ *.swiftdoc \
+					*/*/*/*\ *.swiftdoc \
+					*/*/*/*/*\ *.swiftdoc
 
 re:			fclean $(NAME)
