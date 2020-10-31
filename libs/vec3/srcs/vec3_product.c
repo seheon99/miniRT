@@ -6,11 +6,11 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 02:10:25 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/31 20:41:06 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/31 20:51:04 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libs/vec3.h"
+#include "vec3.h"
 
 double	vec3_dot(const t_vec3 u, const t_vec3 v)
 {

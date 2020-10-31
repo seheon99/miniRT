@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 14:43:41 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/31 20:41:29 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/31 20:49:43 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "holder.h"
 #include "write.h"
 #include "libft.h"
-#include "libs/ft_printf.h"
+#include "ft_printf.h"
 
 /*
 ** @return	Number of bytes written
