@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_get_t.c                                      :+:      :+:    :+:   */
+/*   vec3_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/27 22:40:38 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/27 22:42:19 by seyu             ###   ########.fr       */
+/*   Created: 2020/10/29 02:27:41 by seyu              #+#    #+#             */
+/*   Updated: 2020/10/29 02:32:30 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_color.h"
+#include <math.h>
+#include "vec3.h"
 
-t_color	color_get_t(t_color trgb)
+t_vec3	vec3_unit_vector(const t_vec3 v)
 {
-	return (trgb & (0xFF << 24));
+	return (vec3_div2(v, vec3_length(v)));
+}
+
+double	vec3_length(const t_vec3 v)
+{
+	return (sqrt(vec3_length_squared(v)));
+}
+
+double	vec3_length_squared(const t_vec3 v)
+{
+	return ((v.e[0] * v.e[0])
+			+ (v.e[1] * v.e[1])
+			+ (v.e[2] * v.e[2]));
 }

@@ -1,18 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_get_b.c                                      :+:      :+:    :+:   */
+/*   point3_initialize.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/27 22:44:03 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/27 22:53:30 by seyu             ###   ########.fr       */
+/*   Created: 2020/10/31 14:37:02 by seyu              #+#    #+#             */
+/*   Updated: 2020/10/31 14:39:39 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_color.h"
+#include "point3.h"
 
-t_color	color_get_b(t_color trgb)
+t_point3	point3_create(double x, double y, double z)
 {
-	return (trgb & 0xFF);
+	t_point3	p;
+
+	p.e[0] = x;
+	p.e[1] = y;
+	p.e[2] = z;
+	return (p);
+}
+
+double		point3_x(t_point3 p)
+{
+	return (p.e[0]);
+}
+
+double		poinr3_y(t_point3 p)
+{
+	return (p.e[1]);
+}
+
+double		point3_z(t_point3 p)
+{
+	return (p.e[2]);
 }

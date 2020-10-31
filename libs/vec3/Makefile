@@ -5,18 +5,16 @@
 #                                                     +:+ +:+         +:+      #
 #    By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/10/27 00:16:18 by seyu              #+#    #+#              #
-#    Updated: 2020/10/29 01:33:46 by seyu             ###   ########.fr        #
+#    Created: 2020/10/29 01:32:01 by seyu              #+#    #+#              #
+#    Updated: 2020/10/29 02:35:12 by seyu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 DIR_SRC	=	srcs/
-SRCS	=	$(wildcard $(DIR_SRC)/libft/*.c) \
-			$(wildcard $(DIR_SRC)/ft_printf/*.c) \
-			$(wildcard $(DIR_SRC)/ft_printf/*/*.c)
+SRCS	=	$(wildcard $(DIR_SRC)/*.c)
 OBJS	=	$(SRCS:.c=.o)
 
-NAME	=	libft.a
+NAME	=	libvec3.a
 
 CC		=	clang
 CFLAGS	=	-Wall -Wextra -Werror -g -Iincludes

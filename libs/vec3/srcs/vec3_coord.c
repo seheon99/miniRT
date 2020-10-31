@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image_pixel_put.c                                  :+:      :+:    :+:   */
+/*   vec3_coord.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/28 01:09:44 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/29 04:54:46 by seyu             ###   ########.fr       */
+/*   Created: 2020/10/29 01:39:27 by seyu              #+#    #+#             */
+/*   Updated: 2020/10/29 02:15:50 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_image.h"
-#include "mlx_color.h"
+#include "vec3.h"
 
-int	image_pixel_put(t_image *img, int x, int y, t_color color)
+double	vec3_x(const t_vec3 v)
 {
-	char	*dst;
+	return (v.e[0]);
+}
 
-	if (!img)
-		return (1);
-	dst = img->addr
-			+ (((img->height - 1) - y) * img->line_length)
-			+ (x * (img->bits_per_pixel / 8));
-	*(unsigned int *)dst = color_get_trgb(color);
-	return (0);
+double	vec3_y(const t_vec3 v)
+{
+	return (v.e[1]);
+}
+
+double	vec3_z(const t_vec3 v)
+{
+	return (v.e[2]);
 }

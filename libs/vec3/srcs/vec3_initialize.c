@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image_pixel_put.c                                  :+:      :+:    :+:   */
+/*   vec3_initialize.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/28 01:09:44 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/29 04:54:46 by seyu             ###   ########.fr       */
+/*   Created: 2020/10/29 02:21:26 by seyu              #+#    #+#             */
+/*   Updated: 2020/10/29 02:26:02 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_image.h"
-#include "mlx_color.h"
+#include "vec3.h"
 
-int	image_pixel_put(t_image *img, int x, int y, t_color color)
+t_vec3	vec3_create(double e0, double e1, double e2)
 {
-	char	*dst;
+	t_vec3	rtn;
 
-	if (!img)
-		return (1);
-	dst = img->addr
-			+ (((img->height - 1) - y) * img->line_length)
-			+ (x * (img->bits_per_pixel / 8));
-	*(unsigned int *)dst = color_get_trgb(color);
-	return (0);
+	rtn.e[0] = e0;
+	rtn.e[1] = e1;
+	rtn.e[2] = e2;
+	return (rtn);
+}
+
+t_vec3	vec3_create_empty()
+{
+	t_vec3	rtn;
+
+	rtn.e[0] = 0;
+	rtn.e[1] = 0;
+	rtn.e[2] = 0;
+	return (rtn);
 }

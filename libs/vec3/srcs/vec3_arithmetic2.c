@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_color.h                                        :+:      :+:    :+:   */
+/*   vec3_arithmetic2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/27 22:30:39 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/28 23:35:36 by seyu             ###   ########.fr       */
+/*   Created: 2020/10/29 01:57:58 by seyu              #+#    #+#             */
+/*   Updated: 2020/10/29 02:16:13 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_COLOR_H
-# define MLX_COLOR_H
+#include "vec3.h"
 
-typedef	unsigned int	t_color;
+t_vec3	vec3_mul2(const t_vec3 v, const double d)
+{
+	t_vec3	rtn;
 
-t_color	color_create_trgb(int t, int r, int g, int b);
-t_color	color_get_t(t_color trgb);
-t_color	color_get_r(t_color trgb);
-t_color	color_get_g(t_color trgb);
-t_color	color_get_b(t_color trgb);
+	rtn.e[0] = v.e[0] * d;
+	rtn.e[1] = v.e[1] * d;
+	rtn.e[2] = v.e[2] * d;
+	return (rtn);
+}
 
-#endif
+t_vec3	vec3_div2(const t_vec3 v, const double d)
+{
+	t_vec3	rtn;
+
+	rtn.e[0] = v.e[0] / d;
+	rtn.e[1] = v.e[1] / d;
+	rtn.e[2] = v.e[2] / d;
+	return (rtn);
+}

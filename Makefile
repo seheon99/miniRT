@@ -6,7 +6,7 @@
 #    By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/10 23:07:12 by seheon            #+#    #+#              #
-#    Updated: 2020/10/28 02:37:50 by seyu             ###   ########.fr        #
+#    Updated: 2020/10/31 20:33:50 by seyu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ DIR_INC	=	./includes/
 DIR_SRC	=	./srcs/
 DIR_MLX	=	./libs/minilibx/
 DIR_FT	=	./libs/libft/
+DIR_VEC	=	./libs/vec3/
 
 SRCS	=	$(wildcard $(DIR_SRC)/*.c) \
 			$(wildcard $(DIR_SRC)/*/*.c) \
@@ -50,10 +51,11 @@ OBJS	=	$(SRCS:.c=.o)
 NAME	=	miniRT
 NAME_MLX=	libmlx.dylib
 NAME_FT	=	libft.a
+NAME_VEC=	libvec3.a
 
 CC		=	clang
 CFLAGS	=	-I$(DIR_INC) -Wall -Wextra -Werror -g
-CLIBFMW	=	-L$(DIR_FT) -lft -framework OpenGL -framework AppKit
+CLIBFMW	=	-L$(DIR_FT) -lft -L$(DIR_VEC) -lvec3 -framework OpenGL -framework AppKit
 
 CP		=	cp
 RM		=	rm -f
@@ -64,7 +66,7 @@ ECHO	=	echo
 			@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 			@$(ECHO) "Compiled $(YELLOW)" $< " $(GREEN)Successfully$(NOCOLOR)"
 
-$(NAME):	$(NAME_MLX) $(DIR_FT)/$(NAME_FT) $(OBJS)
+$(NAME):	$(NAME_MLX) $(DIR_FT)/$(NAME_FT) $(DIR_VEC)/$(NAME_VEC) $(OBJS)
 			@$(CC) $(CFLAGS) $(OBJS) $(CLIBFMW) -lmlx -o $(NAME)
 			@$(ECHO) "Maked $(LIGHTBLUE)$(NAME)$(NOCOLOR) $(GREEN)Successfully$(NOCOLOR)"
 			@$(ECHO) "You can render your $(LIGHTGREEN).rt files$(NOCOLOR) with $(LIGHTBLUE)$(NAME)$(NOCOLOR)"
@@ -81,6 +83,11 @@ $(DIR_FT)/$(NAME_FT):
 			@make -C $(DIR_FT) all
 			@$(ECHO) "Summoned $(YELLOW)$(NAME_FT)$(YELLOW) $(GREEN)Successfully$(NOCOLOR)"
 
+$(DIR_VEC)/$(NAME_VEC):
+			@$(ECHO) "Summoning $(YELLOW)$(NAME_VEC)$(NOCOLOR) ..."
+			@make -C $(DIR_VEC) all
+			@$(ECHO) "Summoned $(YELLOW)$(NAME_VEC)$(YELLOW) $(GREEN)Successfully$(NOCOLOR)"
+
 
 all:		$(NAME)
 
@@ -91,6 +98,8 @@ clean:
 			@$(ECHO) "Cast out $(RED)MLX$(NOCOLOR)"
 			@make -C $(DIR_FT) clean
 			@$(ECHO) "Cast out $(RED)FT$(NOCOLOR)"
+			@make -C $(DIR_VEC) clean
+			@$(ECHO) "Cast out $(RED)VEC3$(NOCOLOR)"
 			@$(RM) $(OBJS)
 			@$(ECHO) "Cast out $(RED)$(NAME)$(NOCOLOR)"
 
@@ -100,10 +109,17 @@ fclean:
 			@$(ECHO) "Cast out $(RED)MLX$(NOCOLOR)"
 			@make -C $(DIR_FT) fclean
 			@$(ECHO) "Cast out $(RED)FT$(NOCOLOR)"
+			@make -C $(DIR_VEC) fclean
+			@$(ECHO) "Cast out $(RED)VEC3$(NOCOLOR)"
 			@$(RM) $(OBJS)
 			@$(ECHO) "Cast out $(RED)$(NAME)$(NOCOLOR)"
 			@$(RM) $(NAME)
 			@$(ECHO) "Remove $(RED)$(NAME)$(NOCOLOR)"
-			@$(RM) **/*\ *.o **/*\ *.swift* **/*\ *.dylib **/*\ *.a
+			@$(RM)	*\ *.o \
+					*/*\ *.o \
+					*/*\ *.a \
+					*/*\ *.dylib \
+					*/*\ *.swiftmodule \
+					*/*\ *.swiftdoc
 
 re:			fclean $(NAME)
