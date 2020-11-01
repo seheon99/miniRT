@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 01:00:55 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/01 20:06:34 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/02 00:51:22 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define TRUE 1
 # define FALSE 0
 
-# include "lib/libft.h"
+# include "libs/libft.h"
 
 # include "raytracing/ray.h"
 # include "raytracing/record.h"

@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 22:56:20 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/31 21:27:04 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/02 00:51:22 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MLX_WINDOW_H
 
 # include <stddef.h>
-# include "lib/mlx.h"
+# include "libs/mlx.h"
 # include "mlx/mlx_image.h"
 
 struct		s_window

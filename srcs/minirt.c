@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 01:21:45 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/01 20:49:12 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/02 01:49:22 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 **	-----------------------------------
 */
 
-#include "lib/mlx.h"
-#include "lib/libft.h"
-#include "lib/ft_printf.h"
-#include "lib/vec3.h"
+#include "libs/mlx.h"
+#include "libs/libft.h"
+#include "libs/ft_printf.h"
+#include "libs/vec3.h"
 
 /*
 **	-----------------------------------
@@ -33,12 +33,14 @@
 
 #include "raytracing/ray.h"
 #include "raytracing/record.h"
+#include "raytracing/camera.h"
 
 #include "element/hittable.h"
 #include "element/hittable_list.h"
 #include "element/sphere.h"
 
 #include "error.h"
+#include "utils.h"
 
 /*
 **	-----------------------------------
@@ -76,67 +78,44 @@ static void
 {
 	int		x;
 	int		y;
+	int		samples;
+
+	t_ray	r;
+	t_color	pixel_color;
+
+	t_camera	cam;
 
 	t_hittable_list	world;
 
-	double	viewport_height = 2.0;
-	double	viewport_width =
-				((double)image_width / image_height) * viewport_height;
-	double	focal_length = 1.0;
+	cam = camera_create(image_width, image_height);
 
-	t_vec3	origin = vec3_create(0, 0, 0);
-	t_vec3	horizontal = vec3_create(viewport_width, 0, 0);
-	t_vec3	vertical = vec3_create(0, viewport_height, 0);
-	t_vec3	lower_left_corner =
-				vec3_sub(
-					vec3_sub(
-						vec3_sub(
-							origin,
-							vec3_div2(horizontal, 2)
-						),
-						vec3_div2(vertical, 2)
-					),
-					vec3_create(0, 0, focal_length)
-				);
+	hittable_list_add(&world, sphere_new(point3_create(0, 0, -1), 0.5));
+	hittable_list_add(&world, sphere_new(point3_create(0, -100.5, -1), 100));
 
-	t_ray	r;
-	double	u;
-	double	v;
-	t_color	pixel_color;
-
-	hittable_list_add(&world, sphere_new(point3_create(0, 0, -1), 1));
-	//hittable_list_add(&world, sphere_new(point3_create(0, -100.5, -1), 100));
-
-	y = 0;
-	while (y < image_height)
+	y = -1;
+	while (++y < image_height)
 	{
 		ft_printf("\rScanlines remaining: %d ", y);
-		x = 0;
-		while (x < image_width)
+		x = -1;
+		while (++x < image_width)
 		{
-			u = (double)x / (image_width - 1);
-			v = (double)y / (image_height - 1);
-			r = ray_create(
-					origin,
-					vec3_sub(
-						vec3_add(
-							vec3_add(
-								lower_left_corner,
-								vec3_mul2(horizontal, u)
-							),
-							vec3_mul2(vertical, v)
-						),
-						origin
-					)
-				);
-			pixel_color = ray_color(r, &world);
+			pixel_color = color_create(0, 0, 0);
+			samples = -1;
+			while (++samples < SAMPLES_PER_PIXEL)
+			{
+				r = camera_get_ray(cam,
+					((double)x + random_double(0, 1)) / (image_width - 1),
+					((double)y + random_double(0, 1)) / (image_height - 1));
+				pixel_color = vec3_add(pixel_color, ray_color(r, &world));
+			}
 			image_pixel_put(img, x, y, pixel_color);
-			x += 1;
 		}
-		y += 1;
 	}
 	ft_printf("\nDone.\n");
 }
+
+#define	WIDTH	960
+#define	HEIGHT	540
 
 int	main(int argc, char **argv)
 {
@@ -145,10 +124,10 @@ int	main(int argc, char **argv)
 
 	if (argc != 1)
 		error_usage(argv[0]);
-	window = window_new(960, 540, "Hello, World!");
-	window_new_image(window, 960, 540);
+	window = window_new(WIDTH, HEIGHT, "Hello, World!");
+	window_new_image(window, WIDTH, HEIGHT);
 	image = window_find_last_image(window);
-	make_my_image(image, 960, 540);
+	make_my_image(image, WIDTH, HEIGHT);
 	window_put_image(window, image, 0, 0);
 	mlx_loop(window->mlx);
 }

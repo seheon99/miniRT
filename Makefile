@@ -6,7 +6,7 @@
 #    By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/10 23:07:12 by seheon            #+#    #+#              #
-#    Updated: 2020/10/31 20:53:51 by seyu             ###   ########.fr        #
+#    Updated: 2020/11/02 01:38:02 by seyu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ NAME_FT	=	libft.a
 NAME_VEC=	libvec3.a
 
 CC		=	clang
-CFLAGS	=	-I$(DIR_INC) -Wall -Wextra -Werror -g
+CFLAGS	=	-I$(DIR_INC) -Wall -Wextra -Werror -g -fsanitize=address
 CLIBFMW	=	-L$(DIR_FT) -lft -L$(DIR_VEC) -lvec3 -framework OpenGL -framework AppKit
 
 CP		=	cp

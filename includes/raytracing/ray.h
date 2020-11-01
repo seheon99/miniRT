@@ -6,14 +6,14 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 04:32:02 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/01 01:51:43 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/02 00:51:22 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAY_H
 # define RAY_H
 
-# include "lib/vec3.h"
+# include "libs/vec3.h"
 # include "raytracing/point3.h"
 
 struct		s_ray

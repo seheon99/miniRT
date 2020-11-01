@@ -6,14 +6,14 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 00:22:02 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/01 01:49:00 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/02 00:51:22 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RECORD_H
 # define RECORD_H
 
-# include "lib/vec3.h"
+# include "libs/vec3.h"
 # include "raytracing/point3.h"
 # include "raytracing/ray.h"
 

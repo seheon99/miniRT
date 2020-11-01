@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point3.h                                           :+:      :+:    :+:   */
+/*   camera_ray.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 14:34:44 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/02 00:51:22 by seyu             ###   ########.fr       */
+/*   Created: 2020/11/02 01:03:10 by seyu              #+#    #+#             */
+/*   Updated: 2020/11/02 01:35:15 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef POINT3_H
-# define POINT3_H
+#include "libs/vec3.h"
 
-# include "libs/vec3.h"
+#include "raytracing/ray.h"
+#include "raytracing/camera.h"
 
-typedef	t_vec3	t_point3;
+t_ray	camera_get_ray(t_camera cam, double u, double v)
+{
+	t_ray	ray;
 
-/*
-**	-----------------------------------
-**	point3_initialize.c
-**	-----------------------------------
-*/
-
-t_point3	point3_create(double x, double y, double z);
-double		point3_x(t_point3 p);
-double		point3_y(t_point3 p);
-double		point3_z(t_point3 p);
-
-#endif
+	ray = ray_create(cam.origin,
+			vec3_sub(
+				vec3_add(
+					vec3_add(
+						cam.lower_left_corner,
+						vec3_mul2(
+							cam.horizontal,
+							u)),
+					vec3_mul2(
+						cam.vertical,
+						v)),
+				cam.origin));
+	return (ray);
+}

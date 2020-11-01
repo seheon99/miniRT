@@ -1,31 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point3.h                                           :+:      :+:    :+:   */
+/*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 14:34:44 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/02 00:51:22 by seyu             ###   ########.fr       */
+/*   Created: 2020/11/02 00:49:43 by seyu              #+#    #+#             */
+/*   Updated: 2020/11/02 01:46:22 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef POINT3_H
-# define POINT3_H
+#ifndef CAMERA_H
+# define CAMERA_H
 
 # include "libs/vec3.h"
 
-typedef	t_vec3	t_point3;
+# include "raytracing/point3.h"
+# include "raytracing/ray.h"
+
+struct	s_camera
+{
+	t_point3	origin;
+	t_point3	lower_left_corner;
+	t_vec3		horizontal;
+	t_vec3		vertical;
+};
+typedef	struct s_camera	t_camera;
 
 /*
 **	-----------------------------------
-**	point3_initialize.c
+**	camera_initialize.c
 **	-----------------------------------
 */
 
-t_point3	point3_create(double x, double y, double z);
-double		point3_x(t_point3 p);
-double		point3_y(t_point3 p);
-double		point3_z(t_point3 p);
+t_camera	camera_create(int width, int height);
+
+/*
+**	-----------------------------------
+**	camera_ray.c
+**	-----------------------------------
+*/
+
+t_ray		camera_get_ray(t_camera cam, double u, double v);
 
 #endif

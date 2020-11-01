@@ -6,14 +6,14 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 19:34:15 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/01 19:48:46 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/02 00:51:22 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HITTABLE_H
 # define HITTABLE_H
 
-# include "lib/libft.h"
+# include "libs/libft.h"
 
 # include "raytracing/ray.h"
 # include "raytracing/record.h"

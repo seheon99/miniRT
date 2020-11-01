@@ -6,14 +6,16 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 22:30:39 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/31 21:27:04 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/02 01:26:19 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MLX_COLOR_H
 # define MLX_COLOR_H
 
-# include "lib/vec3.h"
+# include "libs/vec3.h"
+
+# define SAMPLES_PER_PIXEL	100
 
 typedef	t_vec3	t_color;
 

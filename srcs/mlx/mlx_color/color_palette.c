@@ -6,11 +6,13 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 02:45:33 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/31 20:38:13 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/02 01:26:53 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx/mlx_color.h"
+
+#include "utils.h"
 
 int	color_get_t()
 {
@@ -19,17 +21,29 @@ int	color_get_t()
 
 int	color_get_r(t_color color)
 {
-	return (255.999 * color.e[0]);
+	double	r;
+
+	r = color.e[0];
+	r /= SAMPLES_PER_PIXEL;
+	return (256 * clamp(r, 0, 0.999));
 }
 
 int	color_get_g(t_color color)
 {
-	return (255.999 * color.e[1]);
+	double	g;
+
+	g = color.e[1];
+	g /= SAMPLES_PER_PIXEL;
+	return (256 * clamp(g, 0, 0.999));
 }
 
 int	color_get_b(t_color color)
 {
-	return (255.999 * color.e[2]);
+	double	b;
+
+	b = color.e[2];
+	b /= SAMPLES_PER_PIXEL;
+	return (256 * clamp(b, 0, 0.999));
 }
 
 unsigned int
