@@ -6,7 +6,7 @@
 #    By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/10 23:07:12 by seheon            #+#    #+#              #
-#    Updated: 2020/11/02 01:38:02 by seyu             ###   ########.fr        #
+#    Updated: 2020/11/02 02:19:06 by seyu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,28 +55,37 @@ NAME_VEC=	libvec3.a
 
 CC		=	clang
 CFLAGS	=	-I$(DIR_INC) -Wall -Wextra -Werror -g -fsanitize=address
-CLIBFMW	=	-L$(DIR_FT) -lft -L$(DIR_VEC) -lvec3 -framework OpenGL -framework AppKit
+CLIBFMW	=	-lmlx -L$(DIR_FT) -lft -L$(DIR_VEC) -lvec3 -framework OpenGL -framework AppKit
 
 CP		=	cp
 RM		=	rm -f
 MV		=	mv
 ECHO	=	echo
 
+# $(NAME_MLX):
+# 			@$(ECHO) "Summoning $(YELLOW)$(NAME_MLX)$(NOCOLOR) ..."
+# 			@make -C $(DIR_MLX) all
+# 			@$(CP) $(DIR_MLX)/$(NAME_MLX) ./
+# 			@$(ECHO) "Summoned $(YELLOW)$(NAME_MLX)$(YELLOW) $(GREEN)Successfully$(NOCOLOR)"
+
+# clean:
+			# @make -C $(DIR_MLX) clean
+			# @$(ECHO) "Cast out $(RED)MLX$(NOCOLOR)"
+# fclean:
+			# @make -C $(DIR_MLX) clean
+			# @$(RM) ./$(NAME_MLX)
+			# @$(ECHO) "Cast out $(RED)MLX$(NOCOLOR)"
+
 .c.o:
 			@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 			@$(ECHO) "Compiled $(YELLOW)" $< " $(GREEN)Successfully$(NOCOLOR)"
 
-$(NAME):	$(NAME_MLX) $(DIR_FT)/$(NAME_FT) $(DIR_VEC)/$(NAME_VEC) $(OBJS)
+$(NAME):	$(DIR_FT)/$(NAME_FT) $(DIR_VEC)/$(NAME_VEC) $(OBJS)# $(NAME_MLX)
 			@$(CC) $(CFLAGS) $(OBJS) $(CLIBFMW) -lmlx -o $(NAME)
 			@$(ECHO) "Maked $(LIGHTBLUE)$(NAME)$(NOCOLOR) $(GREEN)Successfully$(NOCOLOR)"
 			@$(ECHO) "You can render your $(LIGHTGREEN).rt files$(NOCOLOR) with $(LIGHTBLUE)$(NAME)$(NOCOLOR)"
 			@$(ECHO) " $(BLUE)>$(NOCOLOR) ./$(NAME) wolf.rt cat.rt ..."
 
-$(NAME_MLX):
-			@$(ECHO) "Summoning $(YELLOW)$(NAME_MLX)$(NOCOLOR) ..."
-			@make -C $(DIR_MLX) all
-			@$(CP) $(DIR_MLX)/$(NAME_MLX) ./
-			@$(ECHO) "Summoned $(YELLOW)$(NAME_MLX)$(YELLOW) $(GREEN)Successfully$(NOCOLOR)"
 
 $(DIR_FT)/$(NAME_FT):
 			@$(ECHO) "Summoning $(YELLOW)$(NAME_FT)$(NOCOLOR) ..."
@@ -88,14 +97,11 @@ $(DIR_VEC)/$(NAME_VEC):
 			@make -C $(DIR_VEC) all
 			@$(ECHO) "Summoned $(YELLOW)$(NAME_VEC)$(YELLOW) $(GREEN)Successfully$(NOCOLOR)"
 
-
 all:		$(NAME)
 
 bonus:		$(NAME)
 
 clean:
-			@make -C $(DIR_MLX) clean
-			@$(ECHO) "Cast out $(RED)MLX$(NOCOLOR)"
 			@make -C $(DIR_FT) clean
 			@$(ECHO) "Cast out $(RED)FT$(NOCOLOR)"
 			@make -C $(DIR_VEC) clean
@@ -129,9 +135,6 @@ clean:
 			@$(ECHO) "Cast out $(RED)$(NAME)$(NOCOLOR)"
 
 fclean:
-			@make -C $(DIR_MLX) clean
-			@$(RM) ./$(NAME_MLX)
-			@$(ECHO) "Cast out $(RED)MLX$(NOCOLOR)"
 			@make -C $(DIR_FT) fclean
 			@$(ECHO) "Cast out $(RED)FT$(NOCOLOR)"
 			@make -C $(DIR_VEC) fclean
