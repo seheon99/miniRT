@@ -6,12 +6,12 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 04:40:14 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/31 20:42:33 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/31 21:27:04 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracing/ray.h"
-#include "libs/vec3.h"
+#include "lib/vec3.h"
 
 t_point3	ray_at(t_ray ray, double t)
 {

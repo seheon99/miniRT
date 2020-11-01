@@ -6,14 +6,14 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 01:36:20 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/31 20:41:29 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/31 21:27:04 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include "error.h"
-#include "libs/ft_printf.h"
+#include "lib/ft_printf.h"
 
 void	error_usage(char *program_name)
 {

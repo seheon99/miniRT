@@ -6,7 +6,7 @@
 #    By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/10 23:07:12 by seheon            #+#    #+#              #
-#    Updated: 2020/10/31 20:35:58 by seyu             ###   ########.fr        #
+#    Updated: 2020/10/31 20:53:51 by seyu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,20 +101,6 @@ clean:
 			@make -C $(DIR_VEC) clean
 			@$(ECHO) "Cast out $(RED)VEC3$(NOCOLOR)"
 			@$(RM) $(OBJS)
-			@$(ECHO) "Cast out $(RED)$(NAME)$(NOCOLOR)"
-
-fclean:
-			@make -C $(DIR_MLX) clean
-			@$(RM) ./$(NAME_MLX)
-			@$(ECHO) "Cast out $(RED)MLX$(NOCOLOR)"
-			@make -C $(DIR_FT) fclean
-			@$(ECHO) "Cast out $(RED)FT$(NOCOLOR)"
-			@make -C $(DIR_VEC) fclean
-			@$(ECHO) "Cast out $(RED)VEC3$(NOCOLOR)"
-			@$(RM) $(OBJS)
-			@$(ECHO) "Cast out $(RED)$(NAME)$(NOCOLOR)"
-			@$(RM) $(NAME)
-			@$(ECHO) "Remove $(RED)$(NAME)$(NOCOLOR)"
 			@$(RM)	*\ *.o \
 					*/*\ *.o \
 					*/*/*\ *.o \
@@ -140,5 +126,19 @@ fclean:
 					*/*/*\ *.swiftdoc \
 					*/*/*/*\ *.swiftdoc \
 					*/*/*/*/*\ *.swiftdoc
+			@$(ECHO) "Cast out $(RED)$(NAME)$(NOCOLOR)"
+
+fclean:
+			@make -C $(DIR_MLX) clean
+			@$(RM) ./$(NAME_MLX)
+			@$(ECHO) "Cast out $(RED)MLX$(NOCOLOR)"
+			@make -C $(DIR_FT) fclean
+			@$(ECHO) "Cast out $(RED)FT$(NOCOLOR)"
+			@make -C $(DIR_VEC) fclean
+			@$(ECHO) "Cast out $(RED)VEC3$(NOCOLOR)"
+			@$(RM) $(OBJS)
+			@$(ECHO) "Cast out $(RED)$(NAME)$(NOCOLOR)"
+			@$(RM) $(NAME)
+			@$(ECHO) "Remove $(RED)$(NAME)$(NOCOLOR)"
 
 re:			fclean $(NAME)

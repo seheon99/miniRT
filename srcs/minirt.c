@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 01:21:45 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/31 20:43:41 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/01 20:49:12 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 **	-----------------------------------
 */
 
-#include "libs/mlx.h"
-#include "libs/libft.h"
-#include "libs/ft_printf.h"
-#include "libs/vec3.h"
+#include "lib/mlx.h"
+#include "lib/libft.h"
+#include "lib/ft_printf.h"
+#include "lib/vec3.h"
 
 /*
 **	-----------------------------------
@@ -32,6 +32,11 @@
 #include "mlx/mlx_window.h"
 
 #include "raytracing/ray.h"
+#include "raytracing/record.h"
+
+#include "element/hittable.h"
+#include "element/hittable_list.h"
+#include "element/sphere.h"
 
 #include "error.h"
 
@@ -41,57 +46,23 @@
 **	-----------------------------------
 */
 
-static double
-	ray_hit_sphere(const t_point3 center, double radius, const t_ray r)
-{
-	t_vec3	oc;
-	double	a;
-	double	b;
-	double	c;
-	double	discriminant;
-
-	oc = vec3_sub(ray_origin(r), center);
-	a = vec3_dot(ray_direction(r), ray_direction(r));
-	b = 2.0 * vec3_dot(oc, ray_direction(r));
-	c = vec3_dot(oc, oc) - radius * radius;
-	discriminant = b * b - 4 * a * c;
-	if (discriminant < 0)
-		return (-1);
-	else
-		return ((-b - sqrt(discriminant)) / (2.0 * a));
-}
-
 static t_color
-	ray_color(t_ray r)
+	ray_color(const t_ray r, t_hittable_list *world)
 {
-	t_vec3	unit_direction;
-	t_vec3	n;
-	double	t;
+	t_hit_record	rec;
+	t_vec3			unit_direction;
+	double			t;
 
-	t = ray_hit_sphere(point3_create(0, 0, -1), 0.5, r);
-	if (t > 0)
+	if (hittable_list_hit(world, r, range_create(0, INFINITY), &rec))
 	{
-		n = vec3_unit_vector(
-					vec3_sub(
-						ray_at(r, t),
-						vec3_create(0, 0, -1)
-					));
-		return (vec3_mul2(
-					color_create(vec3_x(n) + 1, vec3_y(n) + 1, vec3_z(n) + 1),
-					0.5
-				));
+		return (vec3_mul2(vec3_add(rec.normal, color_create(1, 1, 1)), 0.5));
 	}
 	unit_direction = vec3_unit_vector(ray_direction(r));
 	t = 0.5 * (vec3_y(unit_direction) + 1.0);
 	return (vec3_add(
-				vec3_mul2(
-					color_create(1.0, 1.0, 1.0),
-					1.0 - t
-				),
-				vec3_mul2(
-					color_create(0.5, 0.7, 1.0),
-					t
-				)));
+		vec3_mul2(color_create(1, 1, 1), (1.0 - t)),
+		vec3_mul2(color_create(0.5, 0.7, 1.0), t)
+	));
 }
 
 /*
@@ -105,6 +76,8 @@ static void
 {
 	int		x;
 	int		y;
+
+	t_hittable_list	world;
 
 	double	viewport_height = 2.0;
 	double	viewport_width =
@@ -131,6 +104,9 @@ static void
 	double	v;
 	t_color	pixel_color;
 
+	hittable_list_add(&world, sphere_new(point3_create(0, 0, -1), 1));
+	//hittable_list_add(&world, sphere_new(point3_create(0, -100.5, -1), 100));
+
 	y = 0;
 	while (y < image_height)
 	{
@@ -153,7 +129,7 @@ static void
 						origin
 					)
 				);
-			pixel_color = ray_color(r);
+			pixel_color = ray_color(r, &world);
 			image_pixel_put(img, x, y, pixel_color);
 			x += 1;
 		}
@@ -167,10 +143,8 @@ int	main(int argc, char **argv)
 	t_window	*window;
 	t_image		*image;
 
-	if (argc == 1)
-	{
+	if (argc != 1)
 		error_usage(argv[0]);
-	}
 	window = window_new(960, 540, "Hello, World!");
 	window_new_image(window, 960, 540);
 	image = window_find_last_image(window);

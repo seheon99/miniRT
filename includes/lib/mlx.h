@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 19:35:36 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/31 20:38:13 by seyu             ###   ########.fr       */
+/*   Updated: 2020/10/31 20:58:55 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	*mlx_xpm_file_to_image(void *mlx_ptr,
 								char *filename,
 								int *width,
 								int *height);
-void    *mlx_png_file_to_image(void *mlx_ptr,
+void	*mlx_png_file_to_image(void *mlx_ptr,
 								char *file,
 								int *width,
 								int *height);
@@ -87,7 +87,7 @@ int		mlx_destroy_window(void *mlx_ptr, void *win_ptr);
 int		mlx_destroy_image(void *mlx_ptr, void *img_ptr);
 
 int		mlx_hook(void *win_ptr, int x_event, int x_mask,
-                 int (*funct)(), void *param);
+				int (*funct)(), void *param);
 
 int		mlx_mouse_hide();
 int		mlx_mouse_show();

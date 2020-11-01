@@ -1,40 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_color.h                                        :+:      :+:    :+:   */
+/*   sphere.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/27 22:30:39 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/31 21:27:04 by seyu             ###   ########.fr       */
+/*   Created: 2020/10/31 21:27:33 by seyu              #+#    #+#             */
+/*   Updated: 2020/11/01 19:50:26 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_COLOR_H
-# define MLX_COLOR_H
+#ifndef SPHERE_H
+# define SPHERE_H
 
-# include "lib/vec3.h"
+# define TRUE 1
+# define FALSE 0
 
-typedef	t_vec3	t_color;
+# include "raytracing/ray.h"
+# include "raytracing/point3.h"
+# include "raytracing/record.h"
+
+# include "element/hittable.h"
+
+struct	s_sphere
+{
+	t_point3	center;
+	double		radius;
+};
+typedef	struct s_sphere	t_sphere;
 
 /*
 **	-----------------------------------
-**	color_initialize.c
+**	sphere_initialize.c
 **	-----------------------------------
 */
 
-t_color			color_create(double r, double g, double b);
+t_hittable
+		*sphere_new(t_point3 center, double radius);
+void	sphere_delete(void *obj);
 
 /*
 **	-----------------------------------
-**	color_palette.c
+**	sphere_hit.c
 **	-----------------------------------
 */
 
-int				color_get_t();
-int				color_get_r(t_color color);
-int				color_get_g(t_color color);
-int				color_get_b(t_color color);
-unsigned int	color_get_trgb(t_color color);
+int		sphere_hit(
+			void *sp, const t_ray r, t_range t_minmax, t_hit_record *rec);
 
 #endif
