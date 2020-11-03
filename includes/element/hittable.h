@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 19:34:15 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/02 00:51:22 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/03 00:58:33 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,5 @@ struct	s_hittable
 	void	*element;
 };
 typedef	struct s_hittable	t_hittable;
-
-/*
-**	-----------------------------------
-**	hittable_initialize.h
-**	-----------------------------------
-*/
-
-void	hittable_common_del(void *);
 
 #endif

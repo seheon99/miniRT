@@ -1,42 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_color.h                                        :+:      :+:    :+:   */
+/*   lambertian.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/27 22:30:39 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/02 05:13:08 by seyu             ###   ########.fr       */
+/*   Created: 2020/11/03 01:02:02 by seyu              #+#    #+#             */
+/*   Updated: 2020/11/03 03:08:06 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_COLOR_H
-# define MLX_COLOR_H
+#ifndef LAMBERTIAN_H
+# define LAMBERTIAN_H
 
-# include "libs/vec3.h"
+# include "mlx/mlx_color.h"
 
-# define SAMPLES_PER_PIXEL	50
+# include "material/material.h"
 
-typedef	t_vec3	t_color;
-
-/*
-**	-----------------------------------
-**	color_initialize.c
-**	-----------------------------------
-*/
-
-t_color			color_create(double r, double g, double b);
+struct	s_lambertian
+{
+	t_color	albedo;
+};
+typedef	struct s_lambertian	t_lambertian;
 
 /*
 **	-----------------------------------
-**	color_palette.c
+**	lambertian_initialize.c
 **	-----------------------------------
 */
 
-int				color_get_t();
-int				color_get_r(t_color color);
-int				color_get_g(t_color color);
-int				color_get_b(t_color color);
-unsigned int	color_get_trgb(t_color color);
+t_material	*lambertian_new(t_color a);
+void		lambertian_delete(void **condition);
+
+/*
+**	-----------------------------------
+**	lambertian_scatter.c
+**	-----------------------------------
+*/
+
+/*
+**	t_ray2	ray
+**	ray.ray1 = &(r_in)
+**	ray.ray2 = &(scattered)
+*/
+
+int			lambertian_scatter(void *lamb, t_hit_record rec,
+									t_color *attenuation, t_ray2 ray);
 
 #endif

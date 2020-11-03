@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 02:45:33 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/02 01:26:53 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/02 04:30:25 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	color_get_r(t_color color)
 
 	r = color.e[0];
 	r /= SAMPLES_PER_PIXEL;
+	r = sqrt(r);
 	return (256 * clamp(r, 0, 0.999));
 }
 
@@ -34,6 +35,7 @@ int	color_get_g(t_color color)
 
 	g = color.e[1];
 	g /= SAMPLES_PER_PIXEL;
+	g = sqrt(g);
 	return (256 * clamp(g, 0, 0.999));
 }
 
@@ -43,6 +45,7 @@ int	color_get_b(t_color color)
 
 	b = color.e[2];
 	b /= SAMPLES_PER_PIXEL;
+	b = sqrt(b);
 	return (256 * clamp(b, 0, 0.999));
 }
 

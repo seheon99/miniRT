@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 00:22:02 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/02 00:51:22 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/03 03:04:45 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define RECORD_H
 
 # include "libs/vec3.h"
+
 # include "raytracing/point3.h"
 # include "raytracing/ray.h"
 
@@ -21,6 +22,7 @@ struct		s_hit_record
 {
 	t_point3	p;
 	t_vec3		normal;
+	void		*mat_ptr;
 	double		t;
 	int			front_face;
 };

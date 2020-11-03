@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 23:44:10 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/02 00:51:22 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/03 03:49:09 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	record_copy(t_hit_record *dst, t_hit_record src)
 	dst->p = src.p;
 	dst->normal = src.normal;
 	dst->front_face = src.front_face;
+	dst->mat_ptr = src.mat_ptr;
 }
 
 void	record_set_face_normal(

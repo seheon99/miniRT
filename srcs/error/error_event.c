@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window_delete.c                                    :+:      :+:    :+:   */
+/*   error_event.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/27 23:13:35 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/02 16:50:01 by seyu             ###   ########.fr       */
+/*   Created: 2020/11/02 19:52:30 by seyu              #+#    #+#             */
+/*   Updated: 2020/11/02 19:53:35 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "mlx/mlx_window.h"
+#include "libs/ft_printf.h"
 
-int	window_delete(t_window **win)
+int	error_unimplemented_event(char *event_name)
 {
-	int		rtn;
-
-	window_delete_image_all(*win);
-	rtn = mlx_destroy_window((*win)->mlx, (*win)->mlx_win);
-	free(*win);
-	*win = NULL;
-	exit(0);
-	return (rtn);
+	ft_printf("%s does not implemented.\n", event_name);
+	return (0);
 }

@@ -1,42 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_color.h                                        :+:      :+:    :+:   */
+/*   material.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/27 22:30:39 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/02 05:13:08 by seyu             ###   ########.fr       */
+/*   Created: 2020/11/02 20:09:35 by seyu              #+#    #+#             */
+/*   Updated: 2020/11/03 02:32:42 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_COLOR_H
-# define MLX_COLOR_H
+#ifndef MATERIAL_H
+# define MATERIAL_H
 
-# include "libs/vec3.h"
+# include "mlx/mlx_color.h"
 
-# define SAMPLES_PER_PIXEL	50
+# include "raytracing/ray.h"
+# include "raytracing/record.h"
 
-typedef	t_vec3	t_color;
+/*
+**	t_ray2	ray
+**	ray.ray1 = &(r_in)
+**	ray.ray2 = &(scattered)
+*/
+
+struct	s_material
+{
+	void	(*del)(void **condition);
+	int		(*scatter)(void *condition, t_hit_record rec,
+						t_color *attenuation, t_ray2 ray);
+	void	*condition;
+};
+typedef	struct s_material	t_material;
 
 /*
 **	-----------------------------------
-**	color_initialize.c
+**	material_initialize.c
 **	-----------------------------------
 */
 
-t_color			color_create(double r, double g, double b);
-
-/*
-**	-----------------------------------
-**	color_palette.c
-**	-----------------------------------
-*/
-
-int				color_get_t();
-int				color_get_r(t_color color);
-int				color_get_g(t_color color);
-int				color_get_b(t_color color);
-unsigned int	color_get_trgb(t_color color);
+void	material_delete(t_material **mat);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 21:27:33 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/01 19:50:26 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/03 03:05:09 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@
 
 # include "element/hittable.h"
 
+# include "material/material.h"
+
 struct	s_sphere
 {
 	t_point3	center;
 	double		radius;
+	t_material	*mat_ptr;
 };
 typedef	struct s_sphere	t_sphere;
 
@@ -35,9 +38,8 @@ typedef	struct s_sphere	t_sphere;
 **	-----------------------------------
 */
 
-t_hittable
-		*sphere_new(t_point3 center, double radius);
-void	sphere_delete(void *obj);
+t_hittable	*sphere_new(t_point3 center, double radius, t_material *mat_ptr);
+void		sphere_delete(void *hittable);
 
 /*
 **	-----------------------------------

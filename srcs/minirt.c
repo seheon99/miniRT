@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 01:21:45 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/02 01:49:22 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/03 03:07:02 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@
 #include "element/hittable_list.h"
 #include "element/sphere.h"
 
+#include "material/material.h"
+#include "material/lambertian.h"
+#include "material/metal.h"
+
 #include "error.h"
 #include "utils.h"
 
@@ -49,15 +53,24 @@
 */
 
 static t_color
-	ray_color(const t_ray r, t_hittable_list *world)
+	ray_color(t_ray r, t_hittable_list *world, int depth)
 {
 	t_hit_record	rec;
 	t_vec3			unit_direction;
 	double			t;
 
-	if (hittable_list_hit(world, r, range_create(0, INFINITY), &rec))
+	if (depth <= 0)
+		return (color_create(0, 0, 0));
+	if (hittable_list_hit(world, r, range_create(0.001, INFINITY), &rec))
 	{
-		return (vec3_mul2(vec3_add(rec.normal, color_create(1, 1, 1)), 0.5));
+		t_ray	scattered;
+		t_color	attenuation;
+
+		if (((t_material *)(rec.mat_ptr))->scatter(
+					&(((t_material *)(rec.mat_ptr))->condition),
+					rec, &attenuation, ray2_create(&r, &scattered)))
+			return (vec3_mul(attenuation,
+					ray_color(scattered, world, depth - 1)));
 	}
 	unit_direction = vec3_unit_vector(ray_direction(r));
 	t = 0.5 * (vec3_y(unit_direction) + 1.0);
@@ -85,17 +98,24 @@ static void
 
 	t_camera	cam;
 
-	t_hittable_list	world;
+	t_hittable_list	*world;
 
 	cam = camera_create(image_width, image_height);
 
-	hittable_list_add(&world, sphere_new(point3_create(0, 0, -1), 0.5));
-	hittable_list_add(&world, sphere_new(point3_create(0, -100.5, -1), 100));
+	t_material	*material_ground = lambertian_new(color_create(0.8, 0.8, 0));
+	t_material	*material_center = lambertian_new(color_create(0.7, 0.3, 0.3));
+	t_material	*material_left = metal_new(color_create(0.8, 0.8, 0.8));
+	t_material	*material_right = metal_new(color_create(0.8, 0.6, 0.2));
+
+	world = hittable_list_new(sphere_new(point3_create(0, 0, -1), 0.5, material_center));
+	hittable_list_add(world, sphere_new(point3_create(0, -100.5, -1), 100, material_ground));
+	hittable_list_add(world, sphere_new(point3_create(-1, 0, -1), 0.5, material_left));
+	hittable_list_add(world, sphere_new(point3_create(1, 0, -1), 0.5, material_right));
 
 	y = -1;
 	while (++y < image_height)
 	{
-		ft_printf("\rScanlines remaining: %d ", y);
+		ft_printf("\rScanlines remaining: %d%% ", y * 100 / image_height);
 		x = -1;
 		while (++x < image_width)
 		{
@@ -106,12 +126,24 @@ static void
 				r = camera_get_ray(cam,
 					((double)x + random_double(0, 1)) / (image_width - 1),
 					((double)y + random_double(0, 1)) / (image_height - 1));
-				pixel_color = vec3_add(pixel_color, ray_color(r, &world));
+				pixel_color = vec3_add(pixel_color,
+						ray_color(r, world, MAX_DEPTH));
 			}
 			image_pixel_put(img, x, y, pixel_color);
 		}
 	}
+	hittable_list_delete(&world);
+	ft_printf("\rScanlines remaining: %d%% ", 100);
 	ft_printf("\nDone.\n");
+}
+
+static void
+	hook(t_window **win)
+{
+	mlx_hook((*win)->mlx_win, DESTROYNOTIFY, STRUCTURENOTIFYMASK,
+					window_delete, win);
+	mlx_hook((*win)->mlx_win, KEYPRESS, KEYPRESSMASK,
+					window_keypress, win);
 }
 
 #define	WIDTH	960
@@ -125,9 +157,9 @@ int	main(int argc, char **argv)
 	if (argc != 1)
 		error_usage(argv[0]);
 	window = window_new(WIDTH, HEIGHT, "Hello, World!");
-	window_new_image(window, WIDTH, HEIGHT);
-	image = window_find_last_image(window);
+	image = window_new_image(window, WIDTH, HEIGHT);
 	make_my_image(image, WIDTH, HEIGHT);
-	window_put_image(window, image, 0, 0);
+	window_put_next_image(window);
+	hook(&window);
 	mlx_loop(window->mlx);
 }

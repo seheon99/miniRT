@@ -6,7 +6,7 @@
 #    By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/10 23:07:12 by seheon            #+#    #+#              #
-#    Updated: 2020/11/02 02:19:06 by seyu             ###   ########.fr        #
+#    Updated: 2020/11/03 03:21:20 by seyu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ NAME_FT	=	libft.a
 NAME_VEC=	libvec3.a
 
 CC		=	clang
-CFLAGS	=	-I$(DIR_INC) -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS	=	-I$(DIR_INC) -Wall -Wextra -Werror -g
 CLIBFMW	=	-lmlx -L$(DIR_FT) -lft -L$(DIR_VEC) -lvec3 -framework OpenGL -framework AppKit
 
 CP		=	cp
@@ -68,6 +68,8 @@ ECHO	=	echo
 # 			@$(CP) $(DIR_MLX)/$(NAME_MLX) ./
 # 			@$(ECHO) "Summoned $(YELLOW)$(NAME_MLX)$(YELLOW) $(GREEN)Successfully$(NOCOLOR)"
 
+# $(NAME):	$(NAME_MLX)
+
 # clean:
 			# @make -C $(DIR_MLX) clean
 			# @$(ECHO) "Cast out $(RED)MLX$(NOCOLOR)"
@@ -80,7 +82,7 @@ ECHO	=	echo
 			@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 			@$(ECHO) "Compiled $(YELLOW)" $< " $(GREEN)Successfully$(NOCOLOR)"
 
-$(NAME):	$(DIR_FT)/$(NAME_FT) $(DIR_VEC)/$(NAME_VEC) $(OBJS)# $(NAME_MLX)
+$(NAME):	$(DIR_FT)/$(NAME_FT) $(DIR_VEC)/$(NAME_VEC) $(OBJS)
 			@$(CC) $(CFLAGS) $(OBJS) $(CLIBFMW) -lmlx -o $(NAME)
 			@$(ECHO) "Maked $(LIGHTBLUE)$(NAME)$(NOCOLOR) $(GREEN)Successfully$(NOCOLOR)"
 			@$(ECHO) "You can render your $(LIGHTGREEN).rt files$(NOCOLOR) with $(LIGHTBLUE)$(NAME)$(NOCOLOR)"
@@ -107,7 +109,8 @@ clean:
 			@make -C $(DIR_VEC) clean
 			@$(ECHO) "Cast out $(RED)VEC3$(NOCOLOR)"
 			@$(RM) $(OBJS)
-			@$(RM)	*\ *.o \
+			@$(RM)	*\ * \
+					*\ *.o \
 					*/*\ *.o \
 					*/*/*\ *.o \
 					*/*/*/*\ *.o \
@@ -134,14 +137,10 @@ clean:
 					*/*/*/*/*\ *.swiftdoc
 			@$(ECHO) "Cast out $(RED)$(NAME)$(NOCOLOR)"
 
-fclean:
+fclean:		clean
 			@make -C $(DIR_FT) fclean
-			@$(ECHO) "Cast out $(RED)FT$(NOCOLOR)"
 			@make -C $(DIR_VEC) fclean
-			@$(ECHO) "Cast out $(RED)VEC3$(NOCOLOR)"
-			@$(RM) $(OBJS)
-			@$(ECHO) "Cast out $(RED)$(NAME)$(NOCOLOR)"
-			@$(RM) $(NAME)
-			@$(ECHO) "Remove $(RED)$(NAME)$(NOCOLOR)"
+			@$(RM) -r $(NAME)
+			@$(ECHO) "Removed $(RED)$(NAME)$(NOCOLOR)"
 
 re:			fclean $(NAME)

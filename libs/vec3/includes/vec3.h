@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 01:23:46 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/31 20:50:46 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/03 02:13:04 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,17 @@ typedef	struct s_vec3	t_vec3;
 
 t_vec3	vec3_create(double e0, double e1, double e2);
 t_vec3	vec3_create_empty();
+
+/*
+**	-----------------------------------
+**	vec3_random.c
+**	-----------------------------------
+*/
+
+t_vec3	vec3_random(double min, double max);
+t_vec3	vec3_random_in_sphere(double max);
+t_vec3	vec3_random_unit_vector(void);
+t_vec3	vec3_random_in_hemisphere(const t_vec3 normal);
 
 /*
 **	-----------------------------------
@@ -78,5 +89,7 @@ t_vec3	vec3_cross(const t_vec3 u, const t_vec3 v);
 t_vec3	vec3_unit_vector(const t_vec3 v);
 double	vec3_length(const t_vec3 v);
 double	vec3_length_squared(const t_vec3 v);
+int		vec3_is_near_zero(const t_vec3 v);
+t_vec3	vec3_reflect(const t_vec3 v, const t_vec3 n);
 
 #endif

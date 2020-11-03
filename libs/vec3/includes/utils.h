@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window_delete.c                                    :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/27 23:13:35 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/02 16:50:01 by seyu             ###   ########.fr       */
+/*   Created: 2020/11/01 19:20:44 by seyu              #+#    #+#             */
+/*   Updated: 2020/11/02 01:17:04 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "mlx/mlx_window.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-int	window_delete(t_window **win)
-{
-	int		rtn;
+/*
+**	-----------------------------------
+**	utils_math.c
+**	-----------------------------------
+*/
 
-	window_delete_image_all(*win);
-	rtn = mlx_destroy_window((*win)->mlx, (*win)->mlx_win);
-	free(*win);
-	*win = NULL;
-	exit(0);
-	return (rtn);
-}
+double	random_double(double min, double max);
+double	degrees_to_radians(double degrees);
+double	clamp(double x, double min, double max);
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 23:06:08 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/31 20:46:09 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/02 16:31:14 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ t_window	*window_new(int size_x, int size_y, char *title)
 	win->mlx = mlx_init();
 	win->mlx_win = mlx_new_window(win->mlx, size_x, size_y, title);
 	win->imglst_head = NULL;
+	win->current_imgptr = NULL;
 	return (win);
 }

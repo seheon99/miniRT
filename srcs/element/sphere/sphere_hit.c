@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 22:33:06 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/02 03:27:07 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/03 03:27:12 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ int	sphere_hit(void *sp, const t_ray r, t_range t_minmax, t_hit_record *rec)
 							((t_sphere *)sp)->radius);
 	record_set_face_normal(rec, r, vec3_div2(vec3_sub(rec->p,
 				((t_sphere *)sp)->center), ((t_sphere *)sp)->radius));
+	rec->mat_ptr = ((t_sphere *)sp)->mat_ptr;
 	return (TRUE);
 }

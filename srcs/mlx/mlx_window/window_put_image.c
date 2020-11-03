@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:37:03 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/31 20:46:35 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/02 16:31:39 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ int	window_put_image(t_window *win, t_image *img, int x, int y)
 	if (!win_img)
 		return (1);
 	mlx_put_image_to_window(win->mlx, win->mlx_win, win_img->mlx_img, x, y);
+	win->current_imgptr = win_img;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 04:32:02 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/02 00:51:22 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/03 01:35:58 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "libs/vec3.h"
 # include "raytracing/point3.h"
+
+# define MAX_DEPTH 50
 
 struct		s_ray
 {
@@ -30,6 +32,13 @@ struct		s_range
 };
 typedef	struct s_range	t_range;
 
+struct		s_ray2
+{
+	t_ray	*ray1;
+	t_ray	*ray2;
+};
+typedef	struct s_ray2	t_ray2;
+
 /*
 **	-----------------------------------
 **	ray_initialize.c
@@ -37,6 +46,7 @@ typedef	struct s_range	t_range;
 */
 
 t_ray		ray_create(t_point3 origin, t_vec3 direction);
+t_ray2		ray2_create(t_ray *ray1, t_ray *ray2);
 t_point3	ray_origin(t_ray ray);
 t_vec3		ray_direction(t_ray ray);
 

@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window_delete.c                                    :+:      :+:    :+:   */
+/*   material_initialize.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/27 23:13:35 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/02 16:50:01 by seyu             ###   ########.fr       */
+/*   Created: 2020/11/03 01:17:32 by seyu              #+#    #+#             */
+/*   Updated: 2020/11/03 01:22:29 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "mlx/mlx_window.h"
 
-int	window_delete(t_window **win)
+#include "material/material.h"
+
+#include "error.h"
+
+void	material_delete(t_material **mat)
 {
-	int		rtn;
-
-	window_delete_image_all(*win);
-	rtn = mlx_destroy_window((*win)->mlx, (*win)->mlx_win);
-	free(*win);
-	*win = NULL;
-	exit(0);
-	return (rtn);
+	((*mat)->del)(&((*mat)->condition));
+	free(*mat);
+	*mat = NULL;
 }
