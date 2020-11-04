@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 01:28:41 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/03 03:10:59 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/04 01:27:15 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,15 @@ int	lambertian_scatter(void *lamb, t_hit_record rec,
 				t_color *attenuation, t_ray2 ray)
 {
 	t_vec3	scatter_direction;
+	t_ray	*r_in;
+	t_ray	*scattered;
 
+	r_in = ray.ray1;
+	scattered = ray.ray2;
 	scatter_direction = vec3_add(rec.normal, vec3_random_unit_vector());
 	if (vec3_is_near_zero(scatter_direction))
 		scatter_direction = rec.normal;
-	*(ray.ray2) = ray_create(rec.p, scatter_direction);
+	*scattered = ray_create(rec.p, scatter_direction);
 	*attenuation = ((t_lambertian *)(lamb))->albedo;
 	return (1);
 }

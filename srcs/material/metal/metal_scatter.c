@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 02:23:35 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/03 03:10:39 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/04 01:25:37 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,14 @@ int	metal_scatter(void *metal, t_hit_record rec,
 				t_color *attenuation, t_ray2 ray)
 {
 	t_vec3	reflected;
+	t_ray	*r_in;
+	t_ray	*scattered;
 
-	reflected = vec3_reflect(vec3_unit_vector(ray_direction(*(ray.ray1))),
-								rec.normal);
-	*(ray.ray2) = ray_create(rec.p, reflected);
+	r_in = ray.ray1;
+	scattered = ray.ray2;
+	reflected = vec3_reflect(
+				vec3_unit_vector(ray_direction(*r_in)), rec.normal);
+	*scattered = ray_create(rec.p, reflected);
 	*attenuation = ((t_metal *)(metal))->albedo;
 	return (vec3_dot(ray_direction(*(ray.ray2)), rec.normal) > 0);
 }

@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 00:22:02 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/03 03:04:45 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/04 01:02:19 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,8 @@
 # include "raytracing/point3.h"
 # include "raytracing/ray.h"
 
-struct		s_hit_record
-{
-	t_point3	p;
-	t_vec3		normal;
-	void		*mat_ptr;
-	double		t;
-	int			front_face;
-};
+# include "material/material.h"
+
 typedef	struct s_hit_record	t_hit_record;
 
 /*

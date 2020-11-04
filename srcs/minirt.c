@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 01:21:45 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/03 03:07:02 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/04 01:57:16 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ static t_color
 		t_ray	scattered;
 		t_color	attenuation;
 
-		if (((t_material *)(rec.mat_ptr))->scatter(
-					&(((t_material *)(rec.mat_ptr))->condition),
+		if (rec.mat_ptr->scatter(rec.mat_ptr->condition,
 					rec, &attenuation, ray2_create(&r, &scattered)))
 			return (vec3_mul(attenuation,
 					ray_color(scattered, world, depth - 1)));
+		return (color_create(0, 0, 0));
 	}
 	unit_direction = vec3_unit_vector(ray_direction(r));
 	t = 0.5 * (vec3_y(unit_direction) + 1.0);

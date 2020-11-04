@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 22:58:10 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/29 00:19:22 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/04 22:54:02 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,41 @@ struct	s_image
 };
 typedef	struct s_image	t_image;
 
+struct	s_bmp_file_header
+{
+	unsigned short	bf_type;
+	unsigned int	bf_size;
+	unsigned short	bf_reserved1;
+	unsigned short	bf_reserved2;
+	unsigned int	bf_offbits;
+};
+typedef	struct s_bmp_file_header	t_bmp_file_header;
+
+struct	s_bmp_info_header
+{
+	unsigned int	bi_size;
+	int				bi_width;
+	int				bi_height;
+	unsigned short	bi_planes;
+	unsigned short	bi_bit_count;
+	unsigned int	bi_compression;
+	unsigned int	bi_size_image;
+	int				bi_x_pels_per_meter;
+	int				bi_y_pels_per_meter;
+	unsigned int	bi_clr_used;
+	unsigned int	bi_clr_important;
+};
+typedef	struct s_bmp_info_header	t_bmp_info_header;
+
+struct	s_rgb_triple
+{
+	unsigned char	rgb_blue;
+	unsigned char	rgb_greed;
+	unsigned char	rgb_red;
+};
+typedef	struct s_rgb_triple		t_rgb_triple;
+
 int		image_pixel_put(t_image *img, int x, int y, t_color color);
+int		image_print_bmp(t_image *img, char *filename);
 
 #endif
