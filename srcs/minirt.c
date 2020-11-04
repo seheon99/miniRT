@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 01:21:45 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/04 01:57:16 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/05 01:09:02 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,11 +154,12 @@ int	main(int argc, char **argv)
 	t_window	*window;
 	t_image		*image;
 
-	if (argc != 1)
+	if (argc == 1)
 		error_usage(argv[0]);
 	window = window_new(WIDTH, HEIGHT, "Hello, World!");
 	image = window_new_image(window, WIDTH, HEIGHT);
 	make_my_image(image, WIDTH, HEIGHT);
+	image_print_bmp(image, argv[0], argv[1]);
 	window_put_next_image(window);
 	hook(&window);
 	mlx_loop(window->mlx);

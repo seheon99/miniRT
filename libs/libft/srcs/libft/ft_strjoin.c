@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 17:16:39 by seyu              #+#    #+#             */
-/*   Updated: 2020/05/06 23:38:56 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/05 00:18:40 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	new_string_idx;
 	char	*new_string;
 
-	if (!s1 || !s2)
-		return (NULL);
+	if (!s1)
+		return (ft_strdup(s2));
+	if (!s2)
+		return (ft_strdup(s1));
 	if (!(new_string = malloc(ft_strlen(s1) + ft_strlen(s2) + 1)))
 		return (0);
 	new_string_idx = 0;

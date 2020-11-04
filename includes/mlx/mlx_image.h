@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 22:58:10 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/04 22:54:02 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/05 01:58:05 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,15 @@ typedef	struct s_bmp_info_header	t_bmp_info_header;
 
 struct	s_rgb_triple
 {
+	unsigned char	rgb_alpha;
 	unsigned char	rgb_blue;
-	unsigned char	rgb_greed;
+	unsigned char	rgb_green;
 	unsigned char	rgb_red;
 };
 typedef	struct s_rgb_triple		t_rgb_triple;
 
-int		image_pixel_put(t_image *img, int x, int y, t_color color);
-int		image_print_bmp(t_image *img, char *filename);
+int				image_pixel_put(t_image *img, int x, int y, t_color color);
+unsigned int	image_pixel_get(t_image *img, int x, int y);
+int				image_print_bmp(t_image *img, char *filepath, char *filename);
 
 #endif

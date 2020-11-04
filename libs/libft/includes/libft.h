@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 15:55:03 by seyu              #+#    #+#             */
-/*   Updated: 2020/10/27 20:57:38 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/05 00:44:05 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ char		*ft_itostr(int numb, char *base);
 char		*ft_ltostr(long int	numb, char *base);
 char		*ft_lltostr(long long int numb, char *base);
 char		*ft_ulltostr(unsigned long long int numb, char *numstr, char *base);
+char		*ft_strjoin2(char **s1, char const *s2);
 void		*ft_print_memory(void *addr, unsigned int size);
 
 int			ft_intlogn(size_t numb, int base);
