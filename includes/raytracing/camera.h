@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 00:49:43 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/06 00:21:57 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 01:06:44 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ typedef	struct s_camera	t_camera;
 **	-----------------------------------
 */
 
-t_camera	camera_create(double vfov, double aspect_ratio);
+t_camera	camera_create(t_point3 lookfrom, t_point3 lookat, t_vec3 vup,
+							double vfov, double aspect_ratio);
 
 /*
 **	-----------------------------------

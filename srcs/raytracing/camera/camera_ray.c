@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 01:03:10 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/02 01:35:15 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 01:04:34 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "raytracing/ray.h"
 #include "raytracing/camera.h"
 
-t_ray	camera_get_ray(t_camera cam, double u, double v)
+t_ray	camera_get_ray(t_camera cam, double s, double t)
 {
 	t_ray	ray;
 
@@ -26,10 +26,10 @@ t_ray	camera_get_ray(t_camera cam, double u, double v)
 						cam.lower_left_corner,
 						vec3_mul2(
 							cam.horizontal,
-							u)),
+							s)),
 					vec3_mul2(
 						cam.vertical,
-						v)),
+						t)),
 				cam.origin));
 	return (ray);
 }

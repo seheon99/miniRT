@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 01:21:45 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/06 00:42:48 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 01:20:34 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,16 +104,22 @@ static void
 
 	t_camera	cam;
 
-	double	R = cos(M_PI / 4);
 	t_hittable_list	*world = hittable_list_new(NULL);
 
-	t_material	*material_left = lambertian_new(color_create(0, 0, 1));
-	t_material	*material_right = lambertian_new(color_create(1, 0, 0));
+	t_material	*material_ground = lambertian_new(color_create(0.8, 0.8, 0));
+	t_material	*material_center = lambertian_new(color_create(0.1, 0.2, 0.5));
+	t_material	*material_left_1 = dielectric_new(1.5);
+	t_material	*material_left_2 = dielectric_new(1.5);
+	t_material	*material_right = metal_new(color_create(0.8, 0.6, 0.2), 0.0);
 
-	hittable_list_add(world, sphere_new(point3_create(-R, 0, -1), R, material_left));
-	hittable_list_add(world, sphere_new(point3_create(R, 0, -1), R, material_right));
+	hittable_list_add(world, sphere_new(point3_create(0, -100.5, -1), 100, material_ground));
+	hittable_list_add(world, sphere_new(point3_create(0, 0, -1), 0.5, material_center));
+	hittable_list_add(world, sphere_new(point3_create(-1, 0, -1), 0.5, material_left_1));
+	hittable_list_add(world, sphere_new(point3_create(-1, 0, -1), -0.45, material_left_2));
+	hittable_list_add(world, sphere_new(point3_create(1, 0, -1), 0.5, material_right));
 
-	cam = camera_create(90.0, (double)image_width / image_height);
+	cam = camera_create(point3_create(-2, 2, 1), point3_create(0, 0, -1),
+				vec3_create(0, 1, 0), 20, (double)image_width / image_height);
 
 	y = -1;
 	while (++y < image_height)
