@@ -6,7 +6,7 @@
 #    By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/10 23:07:12 by seheon            #+#    #+#              #
-#    Updated: 2020/11/05 17:34:04 by seyu             ###   ########.fr        #
+#    Updated: 2020/11/06 03:49:12 by seyu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,7 @@ $(NAME):	$(DIR_FT)/$(NAME_FT) $(DIR_VEC)/$(NAME_VEC) $(OBJS)
 			@$(ECHO) "Maked $(LIGHTBLUE)$(NAME)$(NOCOLOR) $(GREEN)Successfully$(NOCOLOR)"
 			@$(ECHO) "You can render your $(LIGHTGREEN).rt files$(NOCOLOR) with $(LIGHTBLUE)$(NAME)$(NOCOLOR)"
 			@$(ECHO) " $(BLUE)>$(NOCOLOR) ./$(NAME) wolf.rt cat.rt ..."
-
+			@mkdir -p images
 
 $(DIR_FT)/$(NAME_FT):
 			@$(ECHO) "Summoning $(YELLOW)$(NAME_FT)$(NOCOLOR) ..."
