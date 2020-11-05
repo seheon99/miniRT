@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 17:46:21 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/05 19:53:52 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/05 23:22:07 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	dielectric_scatter(void *dielectric, t_hit_record rec,
 	cos_theta = fmin(vec3_dot(vec3_minus(unit_direction), rec.normal), 1.0);
 	sin_theta = sqrt(1.0 - cos_theta * cos_theta);
 	if (refraction_ratio * sin_theta > 1.0
-			|| dielectric_reflactance(dielectric, cos_theta, refraction_ratio)
+			|| dielectric_reflactance(cos_theta, refraction_ratio)
 					> random_double(0, 1))
 		direction = vec3_reflect(unit_direction, rec.normal);
 	else

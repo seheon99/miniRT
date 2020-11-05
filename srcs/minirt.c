@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 01:21:45 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/05 19:42:58 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 00:02:06 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,11 @@ static t_color
 **	-----------------------------------
 */
 
+/*
+**	One material per element must be used,
+**		otherwise double free error will be occured
+*/
+
 static void
 	make_my_image(t_image *img, int image_width, int image_height)
 {
@@ -105,12 +110,14 @@ static void
 
 	t_material	*material_ground = lambertian_new(color_create(0.8, 0.8, 0));
 	t_material	*material_center = lambertian_new(color_create(0.1, 0.2, 0.5));
-	t_material	*material_left = dielectric_new(1.5);
+	t_material	*material_left_1 = dielectric_new(1.5);
+	t_material	*material_left_2 = dielectric_new(1.5);
 	t_material	*material_right = metal_new(color_create(0.8, 0.6, 0.2), 0.0);
 
 	world = hittable_list_new(sphere_new(point3_create(0, 0, -1), 0.5, material_center));
 	hittable_list_add(world, sphere_new(point3_create(0, -100.5, -1), 100, material_ground));
-	hittable_list_add(world, sphere_new(point3_create(-1, 0, -1), 0.5, material_left));
+	hittable_list_add(world, sphere_new(point3_create(-1, 0, -1), 0.5, material_left_1));
+	hittable_list_add(world, sphere_new(point3_create(-1, 0, -1), -0.4, material_left_2));
 	hittable_list_add(world, sphere_new(point3_create(1, 0, -1), 0.5, material_right));
 
 	y = -1;

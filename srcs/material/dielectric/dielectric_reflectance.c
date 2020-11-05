@@ -6,14 +6,13 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 19:50:57 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/05 19:52:30 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/05 23:21:50 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "material/dielectric.h"
 
-double	dielectric_reflactance(t_dielectric *dielectric,
-									double cosine, double ref_idx)
+double	dielectric_reflactance(double cosine, double ref_idx)
 {
 	double	r0;
 
