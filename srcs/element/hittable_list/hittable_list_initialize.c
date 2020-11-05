@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 01:12:42 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/02 05:19:06 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 00:24:30 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,19 @@ t_hittable_list
 	t_hittable_list	*lst;
 
 	lst = (t_hittable_list *)malloc(sizeof(t_hittable_list));
-	lst->objects = ft_lstnew(object);
+	if (!object)
+		lst->objects = NULL;
+	else
+		lst->objects = ft_lstnew(object);
 	return (lst);
 }
 
 void	hittable_list_add(t_hittable_list *lst, void *object)
 {
-	ft_lstadd_back(&(lst->objects), ft_lstnew(object));
+	if (lst->objects)
+		ft_lstadd_back(&(lst->objects), ft_lstnew(object));
+	else
+		lst->objects = ft_lstnew(object);
 }
 
 void	hittable_list_clear(t_hittable_list *lst)
