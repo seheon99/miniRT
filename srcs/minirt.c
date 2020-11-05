@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 01:21:45 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/06 02:28:51 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 03:22:21 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,46 @@ static t_color
 **		otherwise double free error will be occured
 */
 
+static t_hittable_list
+	*random_scene()
+{
+	t_hittable_list	*world;
+	t_material		*mat;
+	t_point3		center;
+	int				a;
+	int				b;
+
+	mat = lambertian_new(color_create(0.5, 0.5, 0.5));
+	world = hittable_list_new(sphere_new(point3_create(0, -1000, 0), 1000, mat));
+	a = -12;
+	while (++a < 11)
+	{
+		b = -12;
+		while (++b < 11)
+		{
+			center = point3_create(a + 0.9 * random_double(0, 1), 0.2, b + 0.9 * random_double(0, 1));
+			if (vec3_length(vec3_sub(center, point3_create(4, 0.2, 0))) > 0.9)
+			{
+				if (random_double(0, 1) < 0.8)
+					mat = lambertian_new(vec3_mul(vec3_random(0, 1), vec3_random(0, 1)));
+				else if (random_double(0, 1) < 0.75)
+					mat = metal_new(vec3_random(0, 1), random_double(0, 0.5));
+				else
+					mat = dielectric_new(1.5);
+				hittable_list_add(world, sphere_new(center, 0.2, mat));
+			}
+		}
+	}
+
+	mat = dielectric_new(1.5);
+	hittable_list_add(world, sphere_new(point3_create(0, 1, 0), 1.0, mat));
+	mat = lambertian_new(color_create(0.4, 0.2, 0.1));
+	hittable_list_add(world, sphere_new(point3_create(-4, 1, 0), 1.0, mat));
+	mat = metal_new(color_create(0.7, 0.6, 0.5), 0.0);
+	hittable_list_add(world, sphere_new(point3_create(4, 1, 0), 1.0, mat));
+	return (world);
+}
+
 static void
 	make_my_image(t_image *img, int image_width, int image_height)
 {
@@ -99,32 +139,19 @@ static void
 	int		y;
 	int		samples;
 
-	t_ray	r;
 	t_color	pixel_color;
+	t_ray	r;
+
+	t_hittable_list	*world = random_scene();
+
+	t_point3	lookfrom = point3_create(13, 2, 3);
+	t_point3	lookat = point3_create(0, 0, -0);
+	t_vec3		vup = vec3_create(0, 1, 0);
+	double		aspect_ratio = (double)image_width / image_height;
+	double		dist_to_focus = 10;
+	double		aperture = 0.1;
 
 	t_camera	cam;
-
-	t_hittable_list	*world = hittable_list_new(NULL);
-
-	t_material	*material_ground = lambertian_new(color_create(0.8, 0.8, 0));
-	t_material	*material_center = lambertian_new(color_create(0.1, 0.2, 0.5));
-	t_material	*material_left_1 = dielectric_new(1.5);
-	t_material	*material_left_2 = dielectric_new(1.5);
-	t_material	*material_right = metal_new(color_create(0.8, 0.6, 0.2), 0.0);
-
-	hittable_list_add(world, sphere_new(point3_create(0, -100.5, -1), 100, material_ground));
-	hittable_list_add(world, sphere_new(point3_create(0, 0, -1), 0.5, material_center));
-	hittable_list_add(world, sphere_new(point3_create(-1, 0, -1), 0.5, material_left_1));
-	hittable_list_add(world, sphere_new(point3_create(-1, 0, -1), -0.45, material_left_2));
-	hittable_list_add(world, sphere_new(point3_create(1, 0, -1), 0.5, material_right));
-
-	t_point3	lookfrom = point3_create(3, 3, 2);
-	t_point3	lookat = point3_create(0, 0, -1);
-	t_vec3		vup = vec3_create(0, 1, 0);
-	double		dist_to_focus = vec3_length(vec3_sub(lookfrom, lookat));
-	double		aperture = 0.5;
-	double		aspect_ratio = (double)image_width / image_height;
-
 	cam = camera_create(lookfrom, lookat, vup, 20, aspect_ratio, aperture, dist_to_focus);
 
 	y = -1;
