@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 01:21:45 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/05 01:09:02 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/05 19:08:44 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 #include "material/material.h"
 #include "material/lambertian.h"
 #include "material/metal.h"
+#include "material/dielectric.h"
 
 #include "error.h"
 #include "utils.h"
@@ -103,9 +104,9 @@ static void
 	cam = camera_create(image_width, image_height);
 
 	t_material	*material_ground = lambertian_new(color_create(0.8, 0.8, 0));
-	t_material	*material_center = lambertian_new(color_create(0.7, 0.3, 0.3));
-	t_material	*material_left = metal_new(color_create(0.8, 0.8, 0.8));
-	t_material	*material_right = metal_new(color_create(0.8, 0.6, 0.2));
+	t_material	*material_center = lambertian_new(color_create(0.1, 0.2, 0.5));
+	t_material	*material_left = dielectric_new(1.5);
+	t_material	*material_right = metal_new(color_create(0.8, 0.6, 0.2), 0.0);
 
 	world = hittable_list_new(sphere_new(point3_create(0, 0, -1), 0.5, material_center));
 	hittable_list_add(world, sphere_new(point3_create(0, -100.5, -1), 100, material_ground));
@@ -154,12 +155,13 @@ int	main(int argc, char **argv)
 	t_window	*window;
 	t_image		*image;
 
-	if (argc == 1)
+	if (argc != 2 && argc != 3)
 		error_usage(argv[0]);
 	window = window_new(WIDTH, HEIGHT, "Hello, World!");
 	image = window_new_image(window, WIDTH, HEIGHT);
 	make_my_image(image, WIDTH, HEIGHT);
-	image_print_bmp(image, argv[0], argv[1]);
+	if (argc == 3 && ft_strncmp(argv[2], "--save", 6))
+		image_print_bmp(image, argv[0], argv[1]);
 	window_put_next_image(window);
 	hook(&window);
 	mlx_loop(window->mlx);

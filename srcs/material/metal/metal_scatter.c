@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 02:23:35 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/04 01:25:37 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/05 15:22:45 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int	metal_scatter(void *metal, t_hit_record rec,
 	scattered = ray.ray2;
 	reflected = vec3_reflect(
 				vec3_unit_vector(ray_direction(*r_in)), rec.normal);
-	*scattered = ray_create(rec.p, reflected);
+	*scattered = ray_create(rec.p, vec3_add(reflected, vec3_mul2(
+					vec3_random_unit_vector(), ((t_metal *)(metal))->fuzz)));
 	*attenuation = ((t_metal *)(metal))->albedo;
 	return (vec3_dot(ray_direction(*(ray.ray2)), rec.normal) > 0);
 }

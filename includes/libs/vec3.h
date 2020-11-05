@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 01:23:46 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/03 02:13:04 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/05 19:05:09 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,14 @@ t_vec3	vec3_unit_vector(const t_vec3 v);
 double	vec3_length(const t_vec3 v);
 double	vec3_length_squared(const t_vec3 v);
 int		vec3_is_near_zero(const t_vec3 v);
+
+/*
+**	-----------------------------------
+**	vec3_ray.c
+**	-----------------------------------
+*/
+
 t_vec3	vec3_reflect(const t_vec3 v, const t_vec3 n);
+t_vec3	vec3_refract(const t_vec3 uv, const t_vec3 n, double etai_over_etat);
 
 #endif

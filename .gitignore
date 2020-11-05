@@ -4,6 +4,7 @@
 *.swiftmodule
 *.swiftsourceinfo
 miniRT
+images
 
 # Prerequisites
 *.d

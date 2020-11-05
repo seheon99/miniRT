@@ -1,41 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   metal.h                                            :+:      :+:    :+:   */
+/*   dielectric.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/03 02:17:10 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/05 15:19:58 by seyu             ###   ########.fr       */
+/*   Created: 2020/11/05 17:27:55 by seyu              #+#    #+#             */
+/*   Updated: 2020/11/05 18:56:51 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef METAL_H
-# define METAL_H
+#ifndef DIELECTRIC_H
+# define DIELECTRIC_H
 
 # include "mlx/mlx_color.h"
 
 # include "material/material.h"
 
-struct	s_metal
+struct	s_dielectric
 {
-	t_color	albedo;
-	double	fuzz;
+	double ir;
 };
-typedef	struct s_metal	t_metal;
+typedef	struct s_dielectric	t_dielectric;
 
 /*
 **	-----------------------------------
-**	metal_initialize.c
+**	dielectric_initialize.c
 **	-----------------------------------
 */
 
-t_material	*metal_new(t_color a, double f);
-void		metal_delete(void **condition);
+t_material	*dielectric_new(double index_of_refraction);
+void		dielectric_delete(void **condition);
 
 /*
 **	-----------------------------------
-**	metal_scatter.c
+**	dielectric_scatter.c
 **	-----------------------------------
 */
 
@@ -45,7 +44,7 @@ void		metal_delete(void **condition);
 **	*(ray.ray2) = scattered
 */
 
-int			metal_scatter(void *metal, t_hit_record rec,
-									t_color *attenuation, t_ray2 ray);
+int			dielectric_scatter(void *dielectric, t_hit_record rec,
+										t_color *attenuation, t_ray2 ray);
 
 #endif
