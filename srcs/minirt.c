@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 01:21:45 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/06 02:26:42 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 02:28:51 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ static void
 	t_point3	lookat = point3_create(0, 0, -1);
 	t_vec3		vup = vec3_create(0, 1, 0);
 	double		dist_to_focus = vec3_length(vec3_sub(lookfrom, lookat));
-	double		aperture = 1.0;
+	double		aperture = 0.5;
 	double		aspect_ratio = (double)image_width / image_height;
 
 	cam = camera_create(lookfrom, lookat, vup, 20, aspect_ratio, aperture, dist_to_focus);
