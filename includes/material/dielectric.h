@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 17:27:55 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/05 18:56:51 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/05 19:50:54 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,14 @@ void		dielectric_delete(void **condition);
 
 int			dielectric_scatter(void *dielectric, t_hit_record rec,
 										t_color *attenuation, t_ray2 ray);
+
+/*
+**	-----------------------------------
+**	dielectric_reflectance.c
+**	-----------------------------------
+*/
+
+double		dielectric_reflactance(t_dielectric *dielectric,
+									double cosine, double ref_idx);
 
 #endif

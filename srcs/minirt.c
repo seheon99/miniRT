@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 01:21:45 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/05 19:08:44 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/05 19:42:58 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ int	main(int argc, char **argv)
 	window = window_new(WIDTH, HEIGHT, "Hello, World!");
 	image = window_new_image(window, WIDTH, HEIGHT);
 	make_my_image(image, WIDTH, HEIGHT);
-	if (argc == 3 && ft_strncmp(argv[2], "--save", 6))
+	if (argc == 3 && ft_strncmp(argv[2], "--save", 6) == 0)
 		image_print_bmp(image, argv[0], argv[1]);
 	window_put_next_image(window);
 	hook(&window);
