@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   record.h                                           :+:      :+:    :+:   */
+/*   solid_color.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/01 00:22:02 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/06 05:18:01 by seyu             ###   ########.fr       */
+/*   Created: 2020/11/06 04:50:56 by seyu              #+#    #+#             */
+/*   Updated: 2020/11/06 05:00:27 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RECORD_H
-# define RECORD_H
+#ifndef SOLID_COLOR_H
+# define SOLID_COLOR_H
 
-# include "libs/vec3.h"
+# include "mlx/mlx_color.h"
 
-# include "raytracing/point3.h"
-# include "raytracing/ray.h"
+# include "texture/texture.h"
 
-# include "material/material.h"
-
-typedef	struct s_hit_record	t_hit_record;
+struct	s_solid_color
+{
+	t_color	color_value;
+};
+typedef	struct s_solid_color	t_solid_color;
 
 /*
 **	-----------------------------------
-**	hit_record_initialize.c
+**	solid_color_initialize.c
 **	-----------------------------------
 */
 
-void	record_copy(t_hit_record *dst, t_hit_record src);
-
-void	record_set_face_normal(
-				t_hit_record *record,
-				const t_ray r,
-				const t_vec3 outward_normal);
+t_texture	*solid_color_new(t_color c);
+t_texture	*solid_color_new_rgb(double red, double green, double blue);
+void		solid_color_delete(void **map);
 
 #endif

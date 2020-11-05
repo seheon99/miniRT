@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   record.h                                           :+:      :+:    :+:   */
+/*   texture.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/01 00:22:02 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/06 05:18:01 by seyu             ###   ########.fr       */
+/*   Created: 2020/11/06 04:48:16 by seyu              #+#    #+#             */
+/*   Updated: 2020/11/06 04:59:19 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RECORD_H
-# define RECORD_H
+#ifndef TEXTURE_H
+# define TEXTURE_H
 
-# include "libs/vec3.h"
+# include "mlx/mlx_color.h"
 
 # include "raytracing/point3.h"
-# include "raytracing/ray.h"
 
-# include "material/material.h"
-
-typedef	struct s_hit_record	t_hit_record;
+struct	s_texture
+{
+	void	(*del)(void **map);
+	t_color	(*value)(double u, double v, const t_point3 p);
+	void	*map;
+};
+typedef	struct s_texture	t_texture;
 
 /*
 **	-----------------------------------
-**	hit_record_initialize.c
+**	texture_initialize.c
 **	-----------------------------------
 */
 
-void	record_copy(t_hit_record *dst, t_hit_record src);
-
-void	record_set_face_normal(
-				t_hit_record *record,
-				const t_ray r,
-				const t_vec3 outward_normal);
+void	texture_delete(t_texture **texture);
 
 #endif

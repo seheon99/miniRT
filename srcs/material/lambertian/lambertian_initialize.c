@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 01:10:23 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/03 03:11:50 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 05:35:09 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 
 #include "material/material.h"
 #include "material/lambertian.h"
+#include "texture/texture.h"
+#include "texture/solid_color.h"
 
-t_material	*lambertian_new(t_color a)
+t_material	*lambertian_new(t_texture *a)
 {
 	t_material	*mat;
 
@@ -29,8 +31,18 @@ t_material	*lambertian_new(t_color a)
 	return (mat);
 }
 
+t_material	*lambertian_new_color(t_color c)
+{
+	lambertian_new(solid_color_new(c));
+}
+
 void		lambertian_delete(void **condition)
 {
+	t_lambertian	*lamb;
+
+	lamb = *condition;
+	lamb->albedo->del(&(lamb->albedo));
+	lamb->albedo = NULL;
 	free(*condition);
 	*condition = NULL;
 }

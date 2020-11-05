@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:09:35 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/04 01:01:28 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 05:01:11 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ struct	s_hit_record
 	t_vec3		normal;
 	t_material	*mat_ptr;
 	double		t;
+	double		u;
+	double		v;
 	int			front_face;
 };
 typedef	struct s_hit_record	t_hit_record;
