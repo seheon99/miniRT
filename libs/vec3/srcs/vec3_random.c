@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 16:01:54 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/02 16:06:33 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 02:09:51 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,17 @@ t_vec3	vec3_random_in_hemisphere(const t_vec3 normal)
 		return (in_unit_sphere);
 	else
 		return (vec3_minus(in_unit_sphere));
+}
+
+t_vec3	vec3_random_in_unit_disk()
+{
+	t_vec3	p;
+
+	while (1)
+	{
+		p = vec3_create(random_double(-1, 1), random_double(-1, 1), 0);
+		if (vec3_length_squared(p) >= 1)
+			continue ;
+		return (p);
+	}
 }

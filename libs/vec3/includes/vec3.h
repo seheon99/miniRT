@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 01:23:46 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/05 19:05:09 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 02:15:53 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_vec3	vec3_random(double min, double max);
 t_vec3	vec3_random_in_sphere(double max);
 t_vec3	vec3_random_unit_vector(void);
 t_vec3	vec3_random_in_hemisphere(const t_vec3 normal);
+t_vec3	vec3_random_in_unit_disk();
 
 /*
 **	-----------------------------------

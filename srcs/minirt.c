@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 01:21:45 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/06 01:20:34 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 02:26:42 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,14 @@ static void
 	hittable_list_add(world, sphere_new(point3_create(-1, 0, -1), -0.45, material_left_2));
 	hittable_list_add(world, sphere_new(point3_create(1, 0, -1), 0.5, material_right));
 
-	cam = camera_create(point3_create(-2, 2, 1), point3_create(0, 0, -1),
-				vec3_create(0, 1, 0), 20, (double)image_width / image_height);
+	t_point3	lookfrom = point3_create(3, 3, 2);
+	t_point3	lookat = point3_create(0, 0, -1);
+	t_vec3		vup = vec3_create(0, 1, 0);
+	double		dist_to_focus = vec3_length(vec3_sub(lookfrom, lookat));
+	double		aperture = 1.0;
+	double		aspect_ratio = (double)image_width / image_height;
+
+	cam = camera_create(lookfrom, lookat, vup, 20, aspect_ratio, aperture, dist_to_focus);
 
 	y = -1;
 	while (++y < image_height)
