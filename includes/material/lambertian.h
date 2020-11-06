@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 01:02:02 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/06 05:32:48 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 13:46:38 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef	struct s_lambertian	t_lambertian;
 
 t_material	*lambertian_new(t_texture *a);
 t_material	*lambertian_new_color(t_color c);
+t_material	*lambertian_new_rgb(double r, double g, double b);
 void		lambertian_delete(void **condition);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 01:10:23 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/06 05:35:09 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 13:45:47 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,12 @@ t_material	*lambertian_new(t_texture *a)
 
 t_material	*lambertian_new_color(t_color c)
 {
-	lambertian_new(solid_color_new(c));
+	return (lambertian_new(solid_color_new(c)));
+}
+
+t_material	*lambertian_new_rgb(double r, double g, double b)
+{
+	return (lambertian_new(solid_color_new_rgb(r, g, b)));
 }
 
 void		lambertian_delete(void **condition)
@@ -41,7 +46,7 @@ void		lambertian_delete(void **condition)
 	t_lambertian	*lamb;
 
 	lamb = *condition;
-	lamb->albedo->del(&(lamb->albedo));
+	lamb->albedo->del((void **)(&(lamb->albedo)));
 	lamb->albedo = NULL;
 	free(*condition);
 	*condition = NULL;

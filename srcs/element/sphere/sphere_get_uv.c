@@ -6,13 +6,14 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 05:11:08 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/06 05:17:21 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 13:12:25 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
 #include "raytracing/ray.h"
+#include "raytracing/point3.h"
 
 /*
 **	p: a given point on the sphere of radius one, centered at the origin

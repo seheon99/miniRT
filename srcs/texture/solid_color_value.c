@@ -1,38 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point3_initialize.c                                :+:      :+:    :+:   */
+/*   solid_color_value.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/31 14:37:02 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/06 13:13:11 by seyu             ###   ########.fr       */
+/*   Created: 2020/11/06 13:06:02 by seyu              #+#    #+#             */
+/*   Updated: 2020/11/06 13:09:27 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raytracing/point3.h"
+#include "mlx/mlx_color.h"
 
-t_point3	point3_create(double x, double y, double z)
+#include "texture/texture.h"
+#include "texture/solid_color.h"
+
+t_color	solid_color_value(void *sc, double u, double v, t_vec3 p)
 {
-	t_point3	p;
+	t_solid_color	*solid_color;
 
-	p.e[0] = x;
-	p.e[1] = y;
-	p.e[2] = z;
-	return (p);
-}
-
-double		point3_x(t_point3 p)
-{
-	return (p.e[0]);
-}
-
-double		point3_y(t_point3 p)
-{
-	return (p.e[1]);
-}
-
-double		point3_z(t_point3 p)
-{
-	return (p.e[2]);
+	u = 0;
+	v = 0;
+	p = vec3_create_empty();
+	solid_color = sc;
+	return (solid_color->color_value);
 }

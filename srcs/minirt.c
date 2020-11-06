@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 01:21:45 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/06 03:22:21 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 13:46:08 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static t_hittable_list
 	int				a;
 	int				b;
 
-	mat = lambertian_new(color_create(0.5, 0.5, 0.5));
+	mat = lambertian_new_rgb(0.5, 0.5, 0.5);
 	world = hittable_list_new(sphere_new(point3_create(0, -1000, 0), 1000, mat));
 	a = -12;
 	while (++a < 11)
@@ -113,7 +113,7 @@ static t_hittable_list
 			if (vec3_length(vec3_sub(center, point3_create(4, 0.2, 0))) > 0.9)
 			{
 				if (random_double(0, 1) < 0.8)
-					mat = lambertian_new(vec3_mul(vec3_random(0, 1), vec3_random(0, 1)));
+					mat = lambertian_new_color(vec3_mul(vec3_random(0, 1), vec3_random(0, 1)));
 				else if (random_double(0, 1) < 0.75)
 					mat = metal_new(vec3_random(0, 1), random_double(0, 0.5));
 				else
@@ -125,7 +125,7 @@ static t_hittable_list
 
 	mat = dielectric_new(1.5);
 	hittable_list_add(world, sphere_new(point3_create(0, 1, 0), 1.0, mat));
-	mat = lambertian_new(color_create(0.4, 0.2, 0.1));
+	mat = lambertian_new_rgb(0.4, 0.2, 0.1);
 	hittable_list_add(world, sphere_new(point3_create(-4, 1, 0), 1.0, mat));
 	mat = metal_new(color_create(0.7, 0.6, 0.5), 0.0);
 	hittable_list_add(world, sphere_new(point3_create(4, 1, 0), 1.0, mat));

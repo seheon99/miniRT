@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 04:48:16 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/06 04:59:19 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 13:08:08 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 struct	s_texture
 {
 	void	(*del)(void **map);
-	t_color	(*value)(double u, double v, const t_point3 p);
+	t_color	(*value)(void *map, double u, double v, t_point3 p);
 	void	*map;
 };
 typedef	struct s_texture	t_texture;

@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 04:50:56 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/06 05:00:27 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 13:08:23 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,13 @@ typedef	struct s_solid_color	t_solid_color;
 t_texture	*solid_color_new(t_color c);
 t_texture	*solid_color_new_rgb(double red, double green, double blue);
 void		solid_color_delete(void **map);
+
+/*
+**	-----------------------------------
+**	solid_color_value.c
+**	-----------------------------------
+*/
+
+t_color		solid_color_value(void *solid_color, double u, double v, t_vec3 p);
 
 #endif
