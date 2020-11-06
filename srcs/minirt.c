@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 01:21:45 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/06 13:46:08 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 15:49:51 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@
 #include "material/lambertian.h"
 #include "material/metal.h"
 #include "material/dielectric.h"
+
+#include "texture/texture.h"
+#include "texture/solid_color.h"
+#include "texture/checker_texture.h"
 
 #include "error.h"
 #include "utils.h"
@@ -97,11 +101,14 @@ static t_hittable_list
 {
 	t_hittable_list	*world;
 	t_material		*mat;
+	t_texture		*texture;
 	t_point3		center;
 	int				a;
 	int				b;
 
-	mat = lambertian_new_rgb(0.5, 0.5, 0.5);
+	texture = checker_texture_new_color(color_create(0.2, 0.3 ,0.1),
+									color_create(0.9, 0.9, 0.9));
+	mat = lambertian_new(texture);
 	world = hittable_list_new(sphere_new(point3_create(0, -1000, 0), 1000, mat));
 	a = -12;
 	while (++a < 11)
