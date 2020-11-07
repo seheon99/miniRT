@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:09:35 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/06 05:01:11 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 16:48:34 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ struct	s_hit_record;
 
 struct	s_material
 {
-	void	(*del)(void **condition);
+	void	(*del)(void *condition);
 	int		(*scatter)(void *condition, struct s_hit_record rec,
 						t_color *attenuation, t_ray2 ray);
 	void	*condition;

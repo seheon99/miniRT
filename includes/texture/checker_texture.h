@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 14:05:31 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/06 14:25:52 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 17:46:49 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef	struct s_checker_texture	t_checker_texture;
 
 t_texture	*checker_texture_new(t_texture *o, t_texture *e);
 t_texture	*checker_texture_new_color(t_color o, t_color e);
-void		checker_texture_delete(void **map);
+void		checker_texture_delete(void *map);
 
 /*
 **	-----------------------------------

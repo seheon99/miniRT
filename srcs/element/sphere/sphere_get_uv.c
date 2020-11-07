@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 05:11:08 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/06 13:12:25 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/07 15:00:51 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	sphere_get_uv(const t_point3 p, double *u, double *v)
 	double	phi;
 
 	theta = acos(-point3_y(p));
-	phi = atan2(-point3_z(p), point3_x(p) + M_PI);
+	phi = atan2(-point3_z(p), point3_x(p)) + M_PI;
 	*u = phi / (2 * M_PI);
 	*v = theta / M_PI;
 }

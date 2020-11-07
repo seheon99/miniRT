@@ -1,53 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lambertian.h                                       :+:      :+:    :+:   */
+/*   image_texture.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/03 01:02:02 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/06 17:23:46 by seyu             ###   ########.fr       */
+/*   Created: 2020/11/06 17:43:31 by seyu              #+#    #+#             */
+/*   Updated: 2020/11/07 02:07:31 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LAMBERTIAN_H
-# define LAMBERTIAN_H
+#ifndef IMAGE_TEXTURE_H
+# define IMAGE_TEXTURE_H
 
 # include "mlx/mlx_color.h"
+# include "mlx/mlx_image.h"
 
-# include "material/material.h"
 # include "texture/texture.h"
 
-struct	s_lambertian
+struct	s_image_texture
 {
-	t_texture	*albedo;
+	t_image	*img;
 };
-typedef	struct s_lambertian	t_lambertian;
+typedef	struct s_image_texture	t_image_texture;
 
 /*
 **	-----------------------------------
-**	lambertian_initialize.c
+**	image_texture_initialize.c
 **	-----------------------------------
 */
 
-t_material	*lambertian_new(t_texture *a);
-t_material	*lambertian_new_color(t_color c);
-t_material	*lambertian_new_rgb(double r, double g, double b);
-void		lambertian_delete(void *condition);
+t_texture	*image_texture_new(t_image *img);
+void		image_texture_delete(void *map);
 
 /*
 **	-----------------------------------
-**	lambertian_scatter.c
+**	image_texture_value.c
 **	-----------------------------------
 */
 
-/*
-**	t_ray2	ray
-**	ray.ray1 = &(r_in)
-**	ray.ray2 = &(scattered)
-*/
-
-int			lambertian_scatter(void *lamb, t_hit_record rec,
-									t_color *attenuation, t_ray2 ray);
+t_color		image_texture_value(void *map, double u, double v, t_vec3 p);
 
 #endif

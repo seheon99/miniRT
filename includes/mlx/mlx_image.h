@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 22:58:10 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/05 01:58:05 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/07 04:18:46 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,10 @@ struct	s_rgb_triple
 };
 typedef	struct s_rgb_triple		t_rgb_triple;
 
+int				image_color_scale(t_image *img);
 int				image_pixel_put(t_image *img, int x, int y, t_color color);
 unsigned int	image_pixel_get(t_image *img, int x, int y);
+t_color			image_pixel_get_color(t_image *img, int x, int y);
 int				image_print_bmp(t_image *img, char *filepath, char *filename);
 
 #endif

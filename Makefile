@@ -6,7 +6,7 @@
 #    By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/10 23:07:12 by seheon            #+#    #+#              #
-#    Updated: 2020/11/06 03:49:12 by seyu             ###   ########.fr        #
+#    Updated: 2020/11/07 02:24:14 by seyu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,11 +35,11 @@ WHITE		= \033[1;37m
 # Makefile
 # ----------------------------------
 
-DIR_INC	=	./includes/
-DIR_SRC	=	./srcs/
-DIR_MLX	=	./libs/minilibx/
-DIR_FT	=	./libs/libft/
-DIR_VEC	=	./libs/vec3/
+DIR_INC	=	./includes
+DIR_SRC	=	./srcs
+DIR_MLX	=	./libs/minilibx
+DIR_FT	=	./libs/libft
+DIR_VEC	=	./libs/vec3
 
 SRCS	=	$(wildcard $(DIR_SRC)/*.c) \
 			$(wildcard $(DIR_SRC)/*/*.c) \
@@ -54,7 +54,7 @@ NAME_FT	=	libft.a
 NAME_VEC=	libvec3.a
 
 CC		=	clang
-CFLAGS	=	-I$(DIR_INC) -Wall -Wextra -Werror -g
+CFLAGS	=	-I$(DIR_INC) -Wall -Wextra -Werror -g3
 CLIBFMW	=	-lmlx -L$(DIR_FT) -lft -L$(DIR_VEC) -lvec3 -framework OpenGL -framework AppKit
 
 CP		=	cp
@@ -86,7 +86,7 @@ $(NAME):	$(DIR_FT)/$(NAME_FT) $(DIR_VEC)/$(NAME_VEC) $(OBJS)
 			@$(CC) $(CFLAGS) $(OBJS) $(CLIBFMW) -lmlx -o $(NAME)
 			@$(ECHO) "Maked $(LIGHTBLUE)$(NAME)$(NOCOLOR) $(GREEN)Successfully$(NOCOLOR)"
 			@$(ECHO) "You can render your $(LIGHTGREEN).rt files$(NOCOLOR) with $(LIGHTBLUE)$(NAME)$(NOCOLOR)"
-			@$(ECHO) " $(BLUE)>$(NOCOLOR) ./$(NAME) wolf.rt cat.rt ..."
+			@$(ECHO) " $(BLUE)>$(NOCOLOR) ./$(NAME) [.rt file] [--save]"
 			@mkdir -p images
 
 $(DIR_FT)/$(NAME_FT):
@@ -105,9 +105,9 @@ bonus:		$(NAME)
 
 clean:
 			@make -C $(DIR_FT) clean
-			@$(ECHO) "Cast out $(RED)FT$(NOCOLOR)"
+			@$(ECHO) "Clean up $(RED)FT$(NOCOLOR)"
 			@make -C $(DIR_VEC) clean
-			@$(ECHO) "Cast out $(RED)VEC3$(NOCOLOR)"
+			@$(ECHO) "Clean up $(RED)VEC3$(NOCOLOR)"
 			@$(RM) $(OBJS)
 			@$(RM)	*\ * \
 					*\ *.o \
@@ -135,7 +135,7 @@ clean:
 					*/*/*\ *.swiftdoc \
 					*/*/*/*\ *.swiftdoc \
 					*/*/*/*/*\ *.swiftdoc
-			@$(ECHO) "Cast out $(RED)$(NAME)$(NOCOLOR)"
+			@$(ECHO) "Clean up $(RED)$(NAME)$(NOCOLOR)"
 
 fclean:		clean
 			@make -C $(DIR_FT) fclean

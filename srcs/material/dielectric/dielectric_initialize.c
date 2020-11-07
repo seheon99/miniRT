@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 17:42:02 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/05 17:45:50 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 16:49:41 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ t_material	*dielectric_new(double index_of_refraction)
 	return (mat);
 }
 
-void		dielectric_delete(void **condition)
+void		dielectric_delete(void *condition)
 {
-	free(*condition);
-	*condition = NULL;
+	free(condition);
 }

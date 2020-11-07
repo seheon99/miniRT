@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 02:17:10 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/05 15:19:58 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 16:50:44 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef	struct s_metal	t_metal;
 */
 
 t_material	*metal_new(t_color a, double f);
-void		metal_delete(void **condition);
+void		metal_delete(void *condition);
 
 /*
 **	-----------------------------------

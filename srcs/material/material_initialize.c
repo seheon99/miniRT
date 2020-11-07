@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 01:17:32 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/03 01:22:29 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 16:48:57 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 
 void	material_delete(t_material **mat)
 {
-	((*mat)->del)(&((*mat)->condition));
+	((*mat)->del)((*mat)->condition);
+	(*mat)->condition = NULL;
 	free(*mat);
 	*mat = NULL;
 }

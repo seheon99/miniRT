@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 17:27:55 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/05 23:21:58 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 16:49:49 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef	struct s_dielectric	t_dielectric;
 */
 
 t_material	*dielectric_new(double index_of_refraction);
-void		dielectric_delete(void **condition);
+void		dielectric_delete(void *condition);
 
 /*
 **	-----------------------------------

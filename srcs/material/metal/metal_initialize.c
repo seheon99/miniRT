@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 02:20:43 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/05 15:15:14 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 16:50:40 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ t_material	*metal_new(t_color a, double f)
 	return (mat);
 }
 
-void		metal_delete(void **condition)
+void		metal_delete(void *condition)
 {
-	free(*condition);
-	*condition = NULL;
+	free(condition);
 }

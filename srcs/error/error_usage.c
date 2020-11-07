@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 01:36:20 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/02 00:51:22 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/06 17:10:29 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@
 
 void	error_usage(char *program_name)
 {
-	ft_printf("Usage: %s <.rt file>\n", program_name);
+	ft_printf("Usage: %s [.rt file] [--save]\n", program_name);
 	exit(EXIT_FAILURE);
 }
