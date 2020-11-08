@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 02:20:43 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/06 16:50:40 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/09 01:56:35 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_material	*metal_new(t_color a, double f)
 {
 	t_material	*mat;
 
-	mat = (t_material *)malloc(sizeof(t_material));
+	mat = material_new();
 	mat->del = metal_delete;
 	mat->scatter = metal_scatter;
 	mat->condition = (t_metal *)malloc(sizeof(t_metal));

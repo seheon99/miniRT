@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   material_initialize.c                              :+:      :+:    :+:   */
+/*   material_virtual.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/03 01:17:32 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/09 01:56:08 by seyu             ###   ########.fr       */
+/*   Created: 2020/11/09 01:53:24 by seyu              #+#    #+#             */
+/*   Updated: 2020/11/09 01:56:20 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "mlx/mlx_color.h"
 
 #include "material/material.h"
 
-#include "error.h"
-
-t_material	*material_new(void)
+t_color	material_virtual_emitted
+				(void *condition, double u, double v, t_point3 p)
 {
-	t_material	*mat;
-
-	mat = (t_material *)malloc(sizeof(t_material));
-	mat->emitted = material_virtual_emitted;
-	return (mat);
-}
-
-void	material_delete(t_material **mat)
-{
-	((*mat)->del)((*mat)->condition);
-	(*mat)->condition = NULL;
-	free(*mat);
-	*mat = NULL;
+	condition = 0;
+	u = 0;
+	v = 0;
+	p = vec3_create_empty();
+	return (color_create(0, 0, 0));
 }

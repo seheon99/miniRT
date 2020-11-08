@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 01:10:23 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/06 17:20:52 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/09 02:18:40 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_material	*lambertian_new(t_texture *a)
 {
 	t_material	*mat;
 
-	mat = (t_material *)malloc(sizeof(t_material));
+	mat = material_new();
 	mat->del = lambertian_delete;
 	mat->scatter = lambertian_scatter;
 	mat->condition = (t_lambertian *)malloc(sizeof(t_lambertian));

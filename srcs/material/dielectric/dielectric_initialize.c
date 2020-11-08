@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 17:42:02 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/06 16:49:41 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/09 01:57:06 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_material	*dielectric_new(double index_of_refraction)
 {
 	t_material	*mat;
 
-	mat = (t_material *)malloc(sizeof(t_material));
+	mat = material_new();
 	mat->del = dielectric_delete;
 	mat->scatter = dielectric_scatter;
 	mat->condition = (t_dielectric *)malloc(sizeof(t_dielectric));

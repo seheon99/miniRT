@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 01:21:45 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/07 03:40:17 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/09 02:20:20 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 #include "material/lambertian.h"
 #include "material/metal.h"
 #include "material/dielectric.h"
+#include "material/diffuse_light.h"
 
 #include "texture/texture.h"
 #include "texture/solid_color.h"
@@ -64,27 +65,23 @@ static t_color
 	ray_color(t_ray r, t_hittable_list *world, int depth)
 {
 	t_hit_record	rec;
-	t_vec3			unit_direction;
-	double			t;
+	t_color			background;
+	t_ray			scattered;
+	t_color			attenuation;
+	t_color			emitted;
 
+	background = color_create(0, 0, 0);
 	if (depth <= 0)
 		return (color_create(0, 0, 0));
-	if (hittable_list_hit(world, r, range_create(0.001, INFINITY), &rec))
-	{
-		t_ray	scattered;
-		t_color	attenuation;
+	if (!(hittable_list_hit(world, r, range_create(0.001, INFINITY), &rec)))
+		return (background);
 
-		if (rec.mat_ptr->scatter(rec.mat_ptr->condition,
-					rec, &attenuation, ray2_create(&r, &scattered)))
-			return (vec3_mul(attenuation,
-					ray_color(scattered, world, depth - 1)));
-		return (color_create(0, 0, 0));
-	}
-	unit_direction = vec3_unit_vector(ray_direction(r));
-	t = 0.5 * (vec3_y(unit_direction) + 1.0);
+	emitted = rec.mat_ptr->emitted(rec.mat_ptr->condition, rec.u, rec.v, rec.p);
+	if (!(rec.mat_ptr->scatter(rec.mat_ptr->condition, rec, &attenuation, ray2_create(&r, &scattered))))
+		return (emitted);
 	return (vec3_add(
-		vec3_mul2(color_create(1, 1, 1), (1.0 - t)),
-		vec3_mul2(color_create(0.5, 0.7, 1.0), t)
+		emitted,
+		vec3_mul(attenuation, ray_color(scattered, world, depth - 1))
 	));
 }
 
@@ -142,23 +139,40 @@ static t_color
 // 	return (world);
 // }
 
+// static t_hittable_list
+// 	*earth(t_window *win)
+// {
+// 	t_hittable_list	*world;
+// 	t_texture		*texture;
+// 	t_material		*material;
+// 	t_image			*srcimg;
+
+// 	srcimg = window_new_source(win, "earthmap.png");
+// 	texture = image_texture_new(srcimg);
+// 	material = lambertian_new(texture);
+// 	world = hittable_list_new(sphere_new(point3_create(0, 0, 0), 2, material));
+// 	return (world);
+// }
+
 static t_hittable_list
-	*earth(t_window *win)
+	*simple_light()
 {
 	t_hittable_list	*world;
-	t_texture		*texture;
-	t_material		*material;
-	t_image			*srcimg;
+	t_material		*pertext;
+	t_material		*difflight;
 
-	srcimg = window_new_source(win, "earthmap.png");
-	texture = image_texture_new(srcimg);
-	material = lambertian_new(texture);
-	world = hittable_list_new(sphere_new(point3_create(0, 0, 0), 2, material));
+	world = hittable_list_new(NULL);
+	pertext = lambertian_new_rgb(0.1, 0.1, 0.1);
+	hittable_list_add(world, sphere_new(point3_create(0, -1000, 0), 1000, pertext));
+	pertext = lambertian_new_rgb(0.1, 0.1, 0.1);
+	hittable_list_add(world, sphere_new(point3_create(0, 2, 0), 2, pertext));
+	difflight = diffuse_light_new_rgb(4, 4, 4);
+	hittable_list_add(world, sphere_new(point3_create(0, 7, 0), 2, difflight));
 	return (world);
 }
 
 static void
-	make_my_image(t_window *win, t_image *img, int image_width, int image_height)
+	make_my_image(t_image *img, int image_width, int image_height)
 {
 	int		x;
 	int		y;
@@ -167,17 +181,17 @@ static void
 	t_color	pixel_color;
 	t_ray	r;
 
-	t_hittable_list	*world = earth(win);
+	t_hittable_list	*world = simple_light();
 
 	t_point3	lookfrom = point3_create(13, 2, 3);
-	t_point3	lookat = point3_create(0, 0, 0);
+	t_point3	lookat = point3_create(0, 2, 0);
 	t_vec3		vup = vec3_create(0, 1, 0);
 	double		aspect_ratio = (double)image_width / image_height;
 	double		dist_to_focus = 10;
 	double		aperture = 0;
 
 	t_camera	cam;
-	cam = camera_create(lookfrom, lookat, vup, 20, aspect_ratio, aperture, dist_to_focus);
+	cam = camera_create(lookfrom, lookat, vup, 40, aspect_ratio, aperture, dist_to_focus);
 
 	y = -1;
 	while (++y < image_height)
@@ -225,7 +239,7 @@ int	main(int argc, char **argv)
 		error_usage(argv[0]);
 	window = window_new(WIDTH, HEIGHT, "Hello, World!");
 	image = window_new_image(window, WIDTH, HEIGHT);
-	make_my_image(window, image, WIDTH, HEIGHT);
+	make_my_image(image, WIDTH, HEIGHT);
 	if (argc == 3 && ft_strncmp(argv[2], "--save", 6) == 0)
 		image_print_bmp(image, argv[0], argv[1]);
 	window_put_next_image(window);

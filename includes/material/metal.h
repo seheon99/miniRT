@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 02:17:10 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/06 16:50:44 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/09 01:33:37 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # include "material/material.h"
 
-struct	s_metal
+struct		s_metal
 {
 	t_color	albedo;
 	double	fuzz;

@@ -6,7 +6,7 @@
 /*   By: seyu <seyu@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:09:35 by seyu              #+#    #+#             */
-/*   Updated: 2020/11/06 16:48:34 by seyu             ###   ########.fr       */
+/*   Updated: 2020/11/09 01:58:00 by seyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include "raytracing/ray.h"
 # include "raytracing/record.h"
 
-struct	s_material;
-struct	s_hit_record;
+struct s_material;
+struct s_hit_record;
 
 /*
 **	t_ray2	ray
@@ -30,6 +30,7 @@ struct	s_hit_record;
 struct	s_material
 {
 	void	(*del)(void *condition);
+	t_color	(*emitted)(void *condition, double u, double v, t_point3 p);
 	int		(*scatter)(void *condition, struct s_hit_record rec,
 						t_color *attenuation, t_ray2 ray);
 	void	*condition;
@@ -54,6 +55,10 @@ typedef	struct s_hit_record	t_hit_record;
 **	-----------------------------------
 */
 
-void	material_delete(t_material **mat);
+t_material	*material_new(void);
+void		material_delete(t_material **mat);
+
+t_color		material_virtual_emitted
+					(void *condition, double u, double v, t_point3 p);
 
 #endif
